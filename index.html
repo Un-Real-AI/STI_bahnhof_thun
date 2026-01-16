@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI Bahnhof Thun – Charts Dashboard</title>
+  <style>
+    :root {
+      --bg: #f8f6ef;
+      --panel: #ffffff;
+      --ink: #1f2a44;
+      --muted: #516073;
+      --accent: #0ea57a;
+      --accent-strong: #0b7e5c;
+      --border: #d9d8d3;
+      --shadow: 0 14px 28px rgba(16, 41, 66, 0.12);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      background: radial-gradient(140% 120% at 20% 20%, #fdfdf8 0%, #f3efe4 45%, #ebe5d5 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 18px 20px 32px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.6px;
+    }
+
+    .dataset-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dataset-tabs button {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--ink);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .dataset-tabs button:hover { transform: translateY(-2px); }
+    .dataset-tabs button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 14px 30px rgba(14, 165, 122, 0.35);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    aside {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      max-height: calc(100vh - 140px);
+      overflow: auto;
+    }
+
+    .group {
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .group:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .group h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .chart-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .chart-button {
+      border: 1px solid var(--border);
+      background: #f9f7f1;
+      color: var(--ink);
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, border 120ms ease;
+      box-shadow: 0 6px 16px rgba(16, 41, 66, 0.08);
+    }
+    .chart-button:hover {
+      transform: translateX(2px);
+      box-shadow: var(--shadow);
+    }
+    .chart-button.active {
+      border: 1px solid var(--accent);
+      background: linear-gradient(135deg, #f2fff9, #e5fff4);
+    }
+
+    .viewer {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-height: 1100px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .viewer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .viewer-title { margin: 0; font-size: 16px; }
+
+    .open-link {
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--ink);
+      background: #f8fafc;
+      font-weight: 600;
+      transition: background 140ms ease, transform 140ms ease;
+    }
+    .open-link:hover {
+      background: #eef5ff;
+      transform: translateY(-1px);
+    }
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: #f9f9f9;
+      min-height: 960px;
+    }
+
+    @media (max-width: 960px) {
+      main { grid-template-columns: 1fr; }
+      aside { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>STI Bahnhof Thun · Chart Browser</h1>
+    <div class="dataset-tabs" id="dataset-tabs" aria-label="Dataset selector"></div>
+  </header>
+
+  <main>
+    <aside id="group-list" aria-label="Chart groups"></aside>
+    <section class="viewer">
+      <div class="viewer-header">
+        <h2 class="viewer-title" id="chart-title">Select a chart</h2>
+        <a class="open-link" id="open-link" href="#" target="_blank" rel="noopener">Open in new tab</a>
+      </div>
+      <iframe id="chart-frame" title="Chart preview"></iframe>
+    </section>
+  </main>
+
+  <script>
+    const datasets = [
+      {
+        id: "totals",
+        label: "Totals",
+        groups: [
+          {
+            label: "By Line",
+            items: [
+              { label: "Sankey (Lines, merged optimistic)", path: "totals/by_line/sankey_lines_merged_optimistic.html" },
+              { label: "Bar (Lines, merged optimistic)", path: "totals/by_line/bar_lines_merged_optimistic.html" },
+              { label: "Line Matrix (Top 30)", path: "totals/by_line/line_matrix_top30.html" }
+            ]
+          },
+          {
+            label: "By Waypoint",
+            items: [
+              { label: "Sankey (Waypoints, merged optimistic)", path: "totals/by_waypoint/sankey_waypoints_merged_optimistic.html" },
+              { label: "Bar (Waypoints, merged optimistic)", path: "totals/by_waypoint/bar_waypoints_merged_optimistic.html" },
+              { label: "Waypoint Matrix (Top 30)", path: "totals/by_waypoint/waypoint_matrix_top30.html" }
+            ]
+          },
+          {
+            label: "By Both",
+            items: [
+              { label: "Sankey Full (Merged optimistic)", path: "totals/by_both/sankey_full_merged_optimistic.html" },
+              { label: "Treemap: Stops by connector (Merged optimistic)", path: "totals/by_both/treemap_stops_by_connector_merged_optimistic.html" },
+              { label: "Treemap: Connectors (Merged optimistic)", path: "totals/by_both/treemap_connectors_merged_optimistic.html" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "only_ov",
+        label: "Only OV",
+        groups: [
+          {
+            label: "By Line",
+            items: [
+              { label: "Sankey (Lines, merged optimistic)", path: "only_ov/by_line/sankey_lines_merged_optimistic.html" },
+              { label: "Bar (Lines, merged optimistic)", path: "only_ov/by_line/bar_lines_merged_optimistic.html" },
+              { label: "Line Matrix (Top 30)", path: "only_ov/by_line/line_matrix_top30.html" }
+            ]
+          },
+          {
+            label: "By Waypoint",
+            items: [
+              { label: "Sankey (Waypoints, merged optimistic)", path: "only_ov/by_waypoint/sankey_waypoints_merged_optimistic.html" },
+              { label: "Bar (Waypoints, merged optimistic)", path: "only_ov/by_waypoint/bar_waypoints_merged_optimistic.html" },
+              { label: "Waypoint Matrix (Top 30)", path: "only_ov/by_waypoint/waypoint_matrix_top30.html" }
+            ]
+          },
+          {
+            label: "By Both",
+            items: [
+              { label: "Sankey Full (Merged optimistic)", path: "only_ov/by_both/sankey_full_merged_optimistic.html" },
+              { label: "Treemap: Stops by connector (Merged optimistic)", path: "only_ov/by_both/treemap_stops_by_connector_merged_optimistic.html" },
+              { label: "Treemap: Connectors (Merged optimistic)", path: "only_ov/by_both/treemap_connectors_merged_optimistic.html" }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const datasetTabsEl = document.getElementById("dataset-tabs");
+    const groupListEl = document.getElementById("group-list");
+    const frameEl = document.getElementById("chart-frame");
+    const titleEl = document.getElementById("chart-title");
+    const openLinkEl = document.getElementById("open-link");
+
+    let currentDataset = datasets[0].id;
+    let currentPath = "";
+
+    const clearActiveButtons = () => {
+      groupListEl.querySelectorAll(".chart-button").forEach(btn => btn.classList.remove("active"));
+      datasetTabsEl.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+    };
+
+    const renderTabs = () => {
+      datasetTabsEl.innerHTML = "";
+      datasets.forEach(ds => {
+        const btn = document.createElement("button");
+        btn.textContent = ds.label;
+        btn.dataset.id = ds.id;
+        btn.classList.toggle("active", ds.id === currentDataset);
+        btn.addEventListener("click", () => {
+          if (currentDataset === ds.id) return;
+          currentDataset = ds.id;
+          clearActiveButtons();
+          renderGroups();
+        });
+        datasetTabsEl.appendChild(btn);
+      });
+    };
+
+    const loadChart = (path, label) => {
+      currentPath = path;
+      frameEl.src = path;
+      titleEl.textContent = label;
+      openLinkEl.href = path;
+    };
+
+    const renderGroups = () => {
+      const ds = datasets.find(item => item.id === currentDataset);
+      if (!ds) return;
+
+      groupListEl.innerHTML = "";
+      datasetTabsEl.querySelectorAll("button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.id === currentDataset);
+      });
+
+      let firstItem = null;
+
+      ds.groups.forEach(group => {
+        const groupEl = document.createElement("div");
+        groupEl.className = "group";
+
+        const title = document.createElement("h3");
+        title.textContent = group.label;
+        groupEl.appendChild(title);
+
+        const list = document.createElement("div");
+        list.className = "chart-list";
+
+        group.items.forEach(item => {
+          const btn = document.createElement("button");
+          btn.className = "chart-button";
+          btn.textContent = item.label;
+          btn.addEventListener("click", () => {
+            groupListEl.querySelectorAll(".chart-button").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            loadChart(item.path, `${ds.label} · ${item.label}`);
+          });
+
+          if (!firstItem) firstItem = { btn, item, ds };
+          list.appendChild(btn);
+        });
+
+        groupEl.appendChild(list);
+        groupListEl.appendChild(groupEl);
+      });
+
+      if (firstItem) {
+        firstItem.btn.classList.add("active");
+        loadChart(firstItem.item.path, `${ds.label} · ${firstItem.item.label}`);
+      }
+    };
+
+    renderTabs();
+    renderGroups();
+  </script>
+</body>
+</html>
