@@ -1,352 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STI Bahnhof Thun – Charts Dashboard</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Korridor-Ausgaben</title>
   <style>
     :root {
-      --bg: #f8f6ef;
+      --bg: #f7f7f5;
       --panel: #ffffff;
-      --ink: #1f2a44;
-      --muted: #516073;
-      --accent: #0ea57a;
-      --accent-strong: #0b7e5c;
-      --border: #d9d8d3;
-      --shadow: 0 14px 28px rgba(16, 41, 66, 0.12);
-      --radius: 14px;
+      --text: #1f2328;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #0f766e;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
-      background: radial-gradient(140% 120% at 20% 20%, #fdfdf8 0%, #f3efe4 45%, #ebe5d5 100%);
-      color: var(--ink);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 18px 20px 32px;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
     }
-
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 22px;
-      letter-spacing: 0.6px;
-    }
-
-    .dataset-tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .dataset-tabs button {
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--ink);
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
-    }
-
-    .dataset-tabs button:hover { transform: translateY(-2px); }
-    .dataset-tabs button.active {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 14px 30px rgba(14, 165, 122, 0.35);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    aside {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      max-height: calc(100vh - 140px);
-      overflow: auto;
-    }
-
-    .group {
-      margin-bottom: 18px;
-      padding-bottom: 8px;
+      padding: 20px 24px;
       border-bottom: 1px solid var(--border);
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 5;
     }
-    .group:last-child { border-bottom: none; margin-bottom: 0; }
-
-    .group h3 {
-      margin: 0 0 10px;
-      font-size: 15px;
-      letter-spacing: 0.3px;
+    header h1 {
+      margin: 0 0 6px 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    header p {
+      margin: 0;
       color: var(--muted);
-      text-transform: uppercase;
+      font-size: 13px;
     }
-
-    .chart-list {
+    .intro {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px 40px;
       display: grid;
-      gap: 8px;
+      gap: 24px;
     }
-
-    .chart-button {
-      border: 1px solid var(--border);
-      background: #f9f7f1;
-      color: var(--ink);
-      padding: 10px 12px;
-      border-radius: 10px;
-      text-align: left;
-      cursor: pointer;
-      transition: transform 120ms ease, box-shadow 120ms ease, border 120ms ease;
-      box-shadow: 0 6px 16px rgba(16, 41, 66, 0.08);
-    }
-    .chart-button:hover {
-      transform: translateX(2px);
-      box-shadow: var(--shadow);
-    }
-    .chart-button.active {
-      border: 1px solid var(--accent);
-      background: linear-gradient(135deg, #f2fff9, #e5fff4);
-    }
-
-    .viewer {
+    section {
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: var(--shadow);
-      min-height: 1100px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      border-radius: 12px;
+      padding: 16px;
     }
-
-    .viewer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+    section h2 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 700;
     }
-
-    .viewer-title { margin: 0; font-size: 16px; }
-
-    .open-link {
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: var(--ink);
-      background: #f8fafc;
-      font-weight: 600;
-      transition: background 140ms ease, transform 140ms ease;
-    }
-    .open-link:hover {
-      background: #eef5ff;
-      transform: translateY(-1px);
-    }
-
-    iframe {
-      flex: 1;
+    .frame {
       width: 100%;
-      border: none;
+      height: 640px;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      background: #f9f9f9;
-      min-height: 960px;
+      background: #fff;
     }
-
-    @media (max-width: 960px) {
-      main { grid-template-columns: 1fr; }
-      aside { max-height: none; }
+    .toggle {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .toggle button {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .toggle button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .supplementary {
+      display: grid;
+      gap: 6px;
+    }
+    .supplementary a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .supplementary a:hover {
+      text-decoration: underline;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    @media (max-width: 900px) {
+      .frame { height: 520px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>STI Bahnhof Thun · Chart Browser</h1>
-    <div class="dataset-tabs" id="dataset-tabs" aria-label="Dataset selector"></div>
+    <h1>Korridor-Ausgaben</h1>
+    <p>Hauptansichten: Korridorkarte, Korridor-Balkendiagramm/Treemap, Korridormatrizen.</p>
   </header>
 
+  <div class="intro">
+    <p>Diese Seite fasst die wichtigsten Korridorergebnisse zusammen. Die Umschalter wechseln die Ansicht an derselben Stelle, damit Vergleiche schnell bleiben.</p>
+  </div>
+
   <main>
-    <aside id="group-list" aria-label="Chart groups"></aside>
-    <section class="viewer">
-      <div class="viewer-header">
-        <h2 class="viewer-title" id="chart-title">Select a chart</h2>
-        <a class="open-link" id="open-link" href="#" target="_blank" rel="noopener">Open in new tab</a>
+    <section>
+      <h2>Karte</h2>
+      <iframe class="frame" id="mapFrame" src="corridor_map.html" title="Korridorkarte"></iframe>
+    </section>
+
+    <section>
+      <h2>Balkendiagramm + Treemap</h2>
+      <div class="toggle" id="barTreemapToggle">
+        <button class="active" data-src="bar_corridors_merged_sum_ov_nocategory.html">Balkendiagramm</button>
+        <button data-src="treemap_corridor_waypoint_merged_sum_ov.html">Treemap</button>
       </div>
-      <iframe id="chart-frame" title="Chart preview"></iframe>
+      <iframe class="frame" id="barTreemapFrame" src="bar_corridors_merged_sum_ov_nocategory.html" title="Korridor-Balkendiagramm"></iframe>
+    </section>
+
+    <section>
+      <h2>Matrix</h2>
+      <div class="toggle" id="matrixToggle">
+        <button class="active" data-src="corridor_matrix_all_ov_symmetric.html">Alle Korridore (symmetrisch)</button>
+        <button data-src="corridor_matrix_bus_to_bus_ov_symmetric.html">Bus &lt;-&gt; Bus (symmetrisch)</button>
+        <button data-src="corridor_matrix_bus_train_ov_symmetric.html">Bus &lt;-&gt; Zug (symmetrisch)</button>
+      </div>
+      <iframe class="frame" id="matrixFrame" src="corridor_matrix_all_ov_symmetric.html" title="Korridormatrix"></iframe>
+      <div class="hint">Der Umschalter wechselt die Matrixansicht; der Frame wird direkt aktualisiert.</div>
+    </section>
+
+    <section>
+      <h2>Weitere Links</h2>
+      <div class="supplementary">
+        <a href="treemap_connectors_merged_sum_ov.html" target="_blank" rel="noopener">Connector-Treemap</a>
+        <a href="treemap_stops_by_connector_merged_sum_ov.html" target="_blank" rel="noopener">Haltestellen nach Connector (Treemap)</a>
+        <a href="bar_waypoints_merged_sum_ov_nocategory.html" target="_blank" rel="noopener">Wegpunkt-Balkendiagramm</a>
+        <a href="waypoint_matrix_top30_ov_symmetric.html" target="_blank" rel="noopener">Wegpunkt-Matrix (Top-30)</a>
+      </div>
     </section>
   </main>
 
   <script>
-    const datasets = [
-      {
-        id: "totals",
-        label: "Totals",
-        groups: [
-          {
-            label: "By Line",
-            items: [
-              { label: "Sankey (Lines, merged optimistic)", path: "totals/by_line/sankey_lines_merged_optimistic.html" },
-              { label: "Bar (Lines, merged optimistic)", path: "totals/by_line/bar_lines_merged_optimistic.html" },
-              { label: "Line Matrix (Top 30)", path: "totals/by_line/line_matrix_top30.html" }
-            ]
-          },
-          {
-            label: "By Waypoint",
-            items: [
-              { label: "Sankey (Waypoints, merged optimistic)", path: "totals/by_waypoint/sankey_waypoints_merged_optimistic.html" },
-              { label: "Bar (Waypoints, merged optimistic)", path: "totals/by_waypoint/bar_waypoints_merged_optimistic.html" },
-              { label: "Waypoint Matrix (Top 30)", path: "totals/by_waypoint/waypoint_matrix_top30.html" }
-            ]
-          },
-          {
-            label: "By Both",
-            items: [
-              { label: "Sankey Full (Merged optimistic)", path: "totals/by_both/sankey_full_merged_optimistic.html" },
-              { label: "Treemap: Stops by connector (Merged optimistic)", path: "totals/by_both/treemap_stops_by_connector_merged_optimistic.html" },
-              { label: "Treemap: Connectors (Merged optimistic)", path: "totals/by_both/treemap_connectors_merged_optimistic.html" }
-            ]
-          }
-        ]
-      },
-      {
-        id: "only_ov",
-        label: "Only OV",
-        groups: [
-          {
-            label: "By Line",
-            items: [
-              { label: "Sankey (Lines, merged optimistic)", path: "only_ov/by_line/sankey_lines_merged_optimistic.html" },
-              { label: "Bar (Lines, merged optimistic)", path: "only_ov/by_line/bar_lines_merged_optimistic.html" },
-              { label: "Line Matrix (Top 30)", path: "only_ov/by_line/line_matrix_top30.html" }
-            ]
-          },
-          {
-            label: "By Waypoint",
-            items: [
-              { label: "Sankey (Waypoints, merged optimistic)", path: "only_ov/by_waypoint/sankey_waypoints_merged_optimistic.html" },
-              { label: "Bar (Waypoints, merged optimistic)", path: "only_ov/by_waypoint/bar_waypoints_merged_optimistic.html" },
-              { label: "Waypoint Matrix (Top 30)", path: "only_ov/by_waypoint/waypoint_matrix_top30.html" }
-            ]
-          },
-          {
-            label: "By Both",
-            items: [
-              { label: "Sankey Full (Merged optimistic)", path: "only_ov/by_both/sankey_full_merged_optimistic.html" },
-              { label: "Treemap: Stops by connector (Merged optimistic)", path: "only_ov/by_both/treemap_stops_by_connector_merged_optimistic.html" },
-              { label: "Treemap: Connectors (Merged optimistic)", path: "only_ov/by_both/treemap_connectors_merged_optimistic.html" }
-            ]
-          }
-        ]
+    function hidePlotlyTitles(iframe) {
+      try {
+        var doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (!doc) return;
+        var nodes = doc.querySelectorAll("g.gtitle, .gtitle, .infolayer .gtitle, .plotly .gtitle");
+        for (var i = 0; i < nodes.length; i++) {
+          nodes[i].style.display = "none";
+        }
+      } catch (err) {
+        return;
       }
-    ];
+    }
 
-    const datasetTabsEl = document.getElementById("dataset-tabs");
-    const groupListEl = document.getElementById("group-list");
-    const frameEl = document.getElementById("chart-frame");
-    const titleEl = document.getElementById("chart-title");
-    const openLinkEl = document.getElementById("open-link");
-
-    let currentDataset = datasets[0].id;
-    let currentPath = "";
-
-    const clearActiveButtons = () => {
-      groupListEl.querySelectorAll(".chart-button").forEach(btn => btn.classList.remove("active"));
-      datasetTabsEl.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
-    };
-
-    const renderTabs = () => {
-      datasetTabsEl.innerHTML = "";
-      datasets.forEach(ds => {
-        const btn = document.createElement("button");
-        btn.textContent = ds.label;
-        btn.dataset.id = ds.id;
-        btn.classList.toggle("active", ds.id === currentDataset);
-        btn.addEventListener("click", () => {
-          if (currentDataset === ds.id) return;
-          currentDataset = ds.id;
-          clearActiveButtons();
-          renderGroups();
-        });
-        datasetTabsEl.appendChild(btn);
+    function attachPlotlyTitleHider(iframe) {
+      if (!iframe) return;
+      iframe.addEventListener("load", function () {
+        var tries = 0;
+        function attempt() {
+          tries += 1;
+          hidePlotlyTitles(iframe);
+          if (tries < 5) {
+            setTimeout(attempt, 300);
+          }
+        }
+        attempt();
       });
-    };
+    }
 
-    const loadChart = (path, label) => {
-      currentPath = path;
-      frameEl.src = path;
-      titleEl.textContent = label;
-      openLinkEl.href = path;
-    };
+    (function () {
+      var toggle = document.getElementById("matrixToggle");
+      var frame = document.getElementById("matrixFrame");
+      if (!toggle || !frame) return;
 
-    const renderGroups = () => {
-      const ds = datasets.find(item => item.id === currentDataset);
-      if (!ds) return;
-
-      groupListEl.innerHTML = "";
-      datasetTabsEl.querySelectorAll("button").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.id === currentDataset);
+      toggle.addEventListener("click", function (event) {
+        var button = event.target;
+        if (!button || !button.dataset || !button.dataset.src) return;
+        var src = button.dataset.src;
+        if (frame.getAttribute("src") !== src) {
+          frame.setAttribute("src", src);
+        }
+        var buttons = toggle.querySelectorAll("button");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].classList.remove("active");
+        }
+        button.classList.add("active");
       });
+    })();
 
-      let firstItem = null;
+    (function () {
+      var toggle = document.getElementById("barTreemapToggle");
+      var frame = document.getElementById("barTreemapFrame");
+      if (!toggle || !frame) return;
 
-      ds.groups.forEach(group => {
-        const groupEl = document.createElement("div");
-        groupEl.className = "group";
-
-        const title = document.createElement("h3");
-        title.textContent = group.label;
-        groupEl.appendChild(title);
-
-        const list = document.createElement("div");
-        list.className = "chart-list";
-
-        group.items.forEach(item => {
-          const btn = document.createElement("button");
-          btn.className = "chart-button";
-          btn.textContent = item.label;
-          btn.addEventListener("click", () => {
-            groupListEl.querySelectorAll(".chart-button").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            loadChart(item.path, `${ds.label} · ${item.label}`);
-          });
-
-          if (!firstItem) firstItem = { btn, item, ds };
-          list.appendChild(btn);
-        });
-
-        groupEl.appendChild(list);
-        groupListEl.appendChild(groupEl);
+      toggle.addEventListener("click", function (event) {
+        var button = event.target;
+        if (!button || !button.dataset || !button.dataset.src) return;
+        var src = button.dataset.src;
+        if (frame.getAttribute("src") !== src) {
+          frame.setAttribute("src", src);
+        }
+        var buttons = toggle.querySelectorAll("button");
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].classList.remove("active");
+        }
+        button.classList.add("active");
       });
+    })();
 
-      if (firstItem) {
-        firstItem.btn.classList.add("active");
-        loadChart(firstItem.item.path, `${ds.label} · ${firstItem.item.label}`);
-      }
-    };
-
-    renderTabs();
-    renderGroups();
+    attachPlotlyTitleHider(document.getElementById("mapFrame"));
+    attachPlotlyTitleHider(document.getElementById("barTreemapFrame"));
+    attachPlotlyTitleHider(document.getElementById("matrixFrame"));
   </script>
 </body>
 </html>
