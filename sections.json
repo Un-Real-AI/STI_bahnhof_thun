@@ -1,6 +1,6 @@
 {
   "title": "Bahnhof Thun: Korridoranalyse",
-  "subtitle": "42hacks im Auftrag von STI Bus AG",
+  "subtitle": "42hacks im Auftrag der STI Bus AG",
   "sections": [
     {
       "id": "intro",
@@ -59,11 +59,14 @@
         ],
         "height": 700
       },
-      "downloads": []
+      "downloads": [
+        { "label": "Korridor Umsteigebeziehungen (Tabelle)", "href": "Korridor_Umsteigebeziehungen.csv" }
+      ]
     },
     {
       "id": "weitere-links",
       "title": "Linien Analyse (Beta)",
+      "hidden": true,
       "markdown": "linien-analyse-beta/Markdown/weitere-links.md",
       "assets": [
         {

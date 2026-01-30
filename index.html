@@ -247,6 +247,7 @@
       display:flex;
       flex-direction:column;
       gap:12px;
+      min-width:0;
     }
     .panel{
       border:1px solid var(--border);
@@ -311,6 +312,11 @@
       font-size:calc(0.9rem * var(--font-scale));
       line-height:1.5;
     }
+    #markdown,[data-role="knoten-doc"]{
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      max-width:100%;
+    }
     #markdown code,[data-role="knoten-doc"] code{
       font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,"Liberation Mono","Courier New",monospace;
       font-size:calc(0.9em * var(--font-scale));
@@ -339,6 +345,53 @@
       background:var(--surface-1);
       border-radius:12px;
       padding:12px 14px;
+      box-shadow:var(--shadow);
+      max-width:100%;
+      box-sizing:border-box;
+    }
+    #markdown .embed-wrap,[data-role="knoten-doc"] .embed-wrap{
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--embed-bg);
+      padding:8px;
+      --embed-height: 640px;
+      display:block;
+      margin:12px 80px;
+      position:relative;
+      max-width:100%;
+      box-sizing:border-box;
+    }
+    #markdown .embed-caption,[data-role="knoten-doc"] .embed-caption{
+      margin-top:8px;
+      font-size:calc(0.9rem * var(--font-scale));
+      color:var(--muted);
+      text-align:center;
+      margin-left:80px;
+      margin-right:80px;
+    }
+    #markdown .embed-wrap .embed,
+    #markdown .embed-wrap iframe,
+    [data-role="knoten-doc"] .embed-wrap .embed,
+    [data-role="knoten-doc"] .embed-wrap iframe{
+      border:none;
+      border-radius:10px;
+      width:100%;
+      height:var(--embed-height, 640px) !important;
+      min-height:var(--embed-height, 640px) !important;
+      display:block;
+    }
+    #markdown .embed-open,[data-role="knoten-doc"] .embed-open{
+      position:absolute;
+      top:10px;
+      right:10px;
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      color:var(--text);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:calc(0.8rem * var(--font-scale));
+      font-weight:600;
+      cursor:pointer;
       box-shadow:var(--shadow);
     }
     #markdown figure,[data-role="knoten-doc"] figure{margin:16px 18px}
@@ -404,6 +457,49 @@
     .image-modal[data-open="true"] .image-modal-img{
       transform:scale(1);
       opacity:1;
+    }
+    .iframe-modal{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(15,23,42,0.72);
+      z-index:1200;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity 0.2s ease, visibility 0s linear 0.2s;
+    }
+    .iframe-modal[data-open="true"]{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transition:opacity 0.24s ease;
+    }
+    .iframe-modal-close{
+      position:absolute;
+      top:14px;
+      right:16px;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.25);
+      background:rgba(15,23,42,0.55);
+      color:#fff;
+      font-size:1.6rem;
+      line-height:1;
+      cursor:pointer;
+    }
+    .iframe-modal-close:hover{background:rgba(15,23,42,0.72)}
+    .iframe-modal-frame{
+      width:min(96vw,1680px);
+      height:92vh;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:0 30px 90px rgba(0,0,0,0.45);
+      background:#fff;
     }
     body.modal-open{overflow:hidden}
     #markdown .footnotes,[data-role="knoten-doc"] .footnotes{
@@ -627,6 +723,8 @@
       aside{position:static;flex-direction:row;flex-wrap:wrap}
       .section-pill{width:auto;flex:1 1 180px;padding:6px 10px}
       .pill-index{width:24px;height:24px;border-radius:999px;font-size:0.72rem}
+      #markdown .embed-wrap,[data-role="knoten-doc"] .embed-wrap{margin:12px 24px}
+      #markdown .embed-caption,[data-role="knoten-doc"] .embed-caption{margin-left:24px;margin-right:24px}
     }
     @media(max-width:700px){
       body{padding:12px}
@@ -635,6 +733,8 @@
       .section-pill{display:none}
       .section-select{display:flex}
       #markdown figcaption,[data-role="knoten-doc"] figcaption{font-size:0.8rem}
+      #markdown .embed-wrap,[data-role="knoten-doc"] .embed-wrap{margin:10px 12px}
+      #markdown .embed-caption,[data-role="knoten-doc"] .embed-caption{margin-left:12px;margin-right:12px}
     }
   </style>
 </head>
@@ -724,7 +824,7 @@
 
         <section class="panel" data-role="downloads-panel">
           <div class="panel-head">
-            <h3>Downloads</h3>
+            <h3 data-role="downloads-heading">Downloads</h3>
           </div>
           <div class="downloads" data-role="downloads"></div>
         </section>
@@ -742,6 +842,10 @@
   <div class="image-modal" data-role="image-modal" data-open="false" aria-hidden="true">
     <button class="image-modal-close" type="button" data-role="image-modal-close" aria-label="Bild schliessen">&times;</button>
     <img class="image-modal-img" data-role="image-modal-img" alt="">
+  </div>
+  <div class="iframe-modal" data-role="iframe-modal" data-open="false" aria-hidden="true">
+    <button class="iframe-modal-close" type="button" data-role="iframe-modal-close" aria-label="Ansicht schliessen">&times;</button>
+    <iframe class="iframe-modal-frame" data-role="iframe-modal-frame" title="" loading="lazy" referrerpolicy="no-referrer"></iframe>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.min.js"></script>
@@ -792,6 +896,7 @@
         main: document.querySelector('main'),
         downloads: document.querySelector('[data-role="downloads"]'),
         downloadsPanel: document.querySelector('[data-role="downloads-panel"]'),
+        downloadsHeading: document.querySelector('[data-role="downloads-heading"]'),
         knotenDocPanel: document.querySelector('[data-role="knoten-doc-panel"]'),
         knotenDoc: document.querySelector('[data-role="knoten-doc"]'),
         helpPanel: document.querySelector('[data-role="help-panel"]'),
@@ -830,7 +935,10 @@
         toc: null,
         imageModal: document.querySelector('[data-role="image-modal"]'),
         imageModalImg: document.querySelector('[data-role="image-modal-img"]'),
-        imageModalClose: document.querySelector('[data-role="image-modal-close"]')
+        imageModalClose: document.querySelector('[data-role="image-modal-close"]'),
+        iframeModal: document.querySelector('[data-role="iframe-modal"]'),
+        iframeModalFrame: document.querySelector('[data-role="iframe-modal-frame"]'),
+        iframeModalClose: document.querySelector('[data-role="iframe-modal-close"]')
       };
 
       init();
@@ -907,6 +1015,26 @@
         });
       }
 
+      function initIframeModal(){
+        if(!ui.iframeModal || !ui.iframeModalFrame){ return; }
+
+        ui.iframeModal.addEventListener('click', (event) => {
+          if(event.target === ui.iframeModal){
+            closeIframeModal();
+          }
+        });
+
+        if(ui.iframeModalClose){
+          ui.iframeModalClose.addEventListener('click', closeIframeModal);
+        }
+
+        document.addEventListener('keydown', (event) => {
+          if(event.key === 'Escape' && ui.iframeModal.dataset.open === 'true'){
+            closeIframeModal();
+          }
+        });
+      }
+
       function openImageModal(src, alt){
         if(!ui.imageModal || !ui.imageModalImg){ return; }
         ui.imageModalImg.src = src;
@@ -921,6 +1049,24 @@
         ui.imageModal.dataset.open = 'false';
         ui.imageModal.setAttribute('aria-hidden', 'true');
         ui.imageModalImg.removeAttribute('src');
+        document.body.classList.remove('modal-open');
+      }
+
+      function openIframeModal(src, title){
+        if(!ui.iframeModal || !ui.iframeModalFrame){ return; }
+        ui.iframeModalFrame.src = src;
+        ui.iframeModalFrame.title = title || 'Embed';
+        ui.iframeModal.dataset.open = 'true';
+        ui.iframeModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeIframeModal(){
+        if(!ui.iframeModal || !ui.iframeModalFrame){ return; }
+        ui.iframeModal.dataset.open = 'false';
+        ui.iframeModal.setAttribute('aria-hidden', 'true');
+        ui.iframeModalFrame.removeAttribute('src');
+        ui.iframeModalFrame.removeAttribute('title');
         document.body.classList.remove('modal-open');
       }
 
@@ -985,6 +1131,7 @@
 
       async function init(){
         initImageModal();
+        initIframeModal();
         try{
           const config = await loadConfig();
           state.sections = config.sections || [];
@@ -1017,23 +1164,28 @@
         throw new Error('Keine sections.json gefunden (probiert ./ und ../)');
       }
 
+      function visibleSections(list){
+        return (list || []).filter(section => !section.hidden);
+      }
+
       function pickInitial(list){
+        const visible = visibleSections(list);
         const fromHash = decodeURIComponent(window.location.hash.replace('#','')).trim();
-        if(fromHash && list.some(s => s.id === fromHash)){ return fromHash; }
-        return list[0]?.id;
+        if(fromHash && visible.some(s => s.id === fromHash)){ return fromHash; }
+        return visible[0]?.id;
       }
 
       function handleHashChange(){
         const target = decodeURIComponent(window.location.hash.replace('#','')).trim();
         if(!target || target === state.activeId){ return; }
-        if(state.sections.some(s => s.id === target)){
+        if(visibleSections(state.sections).some(s => s.id === target)){
           selectSection(target);
         }
       }
 
       async function selectSection(id){
         const section = state.sections.find(s => s.id === id);
-        if(!section){ return; }
+        if(!section || section.hidden){ return; }
         state.activeId = id;
         updateNav(id);
         window.location.hash = encodeURIComponent(id);
@@ -1059,6 +1211,7 @@
 
       function renderNav(){
         ui.sectionList.innerHTML = '';
+        const visible = visibleSections(state.sections);
         const label = document.createElement('label');
         label.className = 'section-select';
         const labelText = document.createElement('span');
@@ -1076,7 +1229,7 @@
         ui.sectionList.appendChild(label);
         ui.sectionSelect = select;
 
-        state.sections.forEach((section, idx) => {
+        visible.forEach((section, idx) => {
           const option = document.createElement('option');
           option.value = section.id;
           option.textContent = section.title || section.id;
@@ -1090,7 +1243,7 @@
           btn.addEventListener('click', () => selectSection(section.id));
           ui.sectionList.appendChild(btn);
         });
-        const initialId = state.activeId || state.sections[0]?.id;
+        const initialId = state.activeId || visible[0]?.id;
         if(initialId){ select.value = initialId; }
       }
 
@@ -1186,8 +1339,13 @@
           if(!res.ok){ throw new Error(res.status + ' ' + res.statusText); }
           const text = await res.text();
           const raw = md.render(text);
-          ui.markdown.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
+          ui.markdown.innerHTML = DOMPurify.sanitize(raw, {
+            USE_PROFILES: {html: true},
+            ADD_TAGS: ['iframe'],
+            ADD_ATTR: ['src','title','loading','referrerpolicy','allow','allowfullscreen','frameborder','height','width','style','class']
+          });
           wrapTables(ui.markdown);
+          enhanceEmbedWraps(ui.markdown);
           if(section.id === 'intro'){
             renderToc(ui.markdown);
           }else if(section.id === 'schluesselergebnisse'){
@@ -1212,6 +1370,25 @@
         });
       }
 
+      function enhanceEmbedWraps(container){
+        if(!container){ return; }
+        container.querySelectorAll('.embed-wrap').forEach((wrap) => {
+          if(wrap.querySelector('.embed-open')){ return; }
+          const frame = wrap.querySelector('iframe');
+          if(!frame){ return; }
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'embed-open';
+          btn.textContent = 'Vollbild';
+          btn.addEventListener('click', () => {
+            const src = frame.getAttribute('src');
+            if(!src){ return; }
+            openIframeModal(src, frame.getAttribute('title') || 'Embed');
+          });
+          wrap.appendChild(btn);
+        });
+      }
+
       function renderDownloads(section){
         ui.downloads.innerHTML = '';
         if(section.id === 'weitere-links'){
@@ -1222,6 +1399,25 @@
         if(!downloads.length){
           ui.downloadsPanel.hidden = true;
           return;
+        }
+        if(section.id === 'balkendiagramm-treemap'){
+          if(ui.downloadsHeading){
+            ui.downloadsHeading.textContent = 'Korridor Umsteigebeziehungen (Tabelle)';
+          }
+          ui.downloadsPanel.hidden = false;
+          const item = downloads[0];
+          if(item && item.href){
+            const link = document.createElement('a');
+            link.className = 'btn secondary';
+            link.href = resolve(item.href);
+            link.download = '';
+            link.textContent = 'Download';
+            ui.downloads.appendChild(link);
+          }
+          return;
+        }
+        if(ui.downloadsHeading){
+          ui.downloadsHeading.textContent = 'Downloads';
         }
         if(section.id === 'ist-analysis'){
           const note = document.createElement('p');

@@ -1,0 +1,234 @@
+Korridor 1,Korridor 2,Fahrten
+HUB – Thun Bahnhof,SBB IC/EC/ICE – Bern (z.B. Zürich),4233.886084
+SBB IC/EC/ICE – Bern (z.B. Zürich),HUB – Thun Bahnhof,4233.886084
+HUB – Thun Bahnhof,SBB IC/EC/ICE – Spiez Brig Interlaken,2849.373922
+SBB IC/EC/ICE – Spiez Brig Interlaken,HUB – Thun Bahnhof,2849.373922
+HUB – Thun Bahnhof,BLS S1 – Freiburg/Fribourg ↔ Bern,1279.179536
+BLS S1 – Freiburg/Fribourg ↔ Bern,HUB – Thun Bahnhof,1279.179536
+Stocken/Pohlern (z.B. Bus 3),SBB IC/EC/ICE – Bern (z.B. Zürich),1169.437419
+SBB IC/EC/ICE – Bern (z.B. Zürich),Stocken/Pohlern (z.B. Bus 3),1169.437419
+HUB – Thun Bahnhof,BLS S44/S4 – Gürbetal/Seftigen,1065.966952
+BLS S44/S4 – Gürbetal/Seftigen,HUB – Thun Bahnhof,1065.966952
+SBB IC/EC/ICE – Spiez Brig Interlaken,BLS S41/S42 – Heimberg/Steffisburg,648.7060436
+BLS S41/S42 – Heimberg/Steffisburg,SBB IC/EC/ICE – Spiez Brig Interlaken,648.7060436
+SBB IC/EC/ICE – Spiez Brig Interlaken,Stocken/Pohlern (z.B. Bus 3),576.8133979
+Stocken/Pohlern (z.B. Bus 3),SBB IC/EC/ICE – Spiez Brig Interlaken,576.8133979
+SBB IC/EC/ICE – Spiez Brig Interlaken,BLS S44/S4 – Gürbetal/Seftigen,517.8713978
+BLS S44/S4 – Gürbetal/Seftigen,SBB IC/EC/ICE – Spiez Brig Interlaken,517.8713978
+BLS S41/S42 – Heimberg/Steffisburg,HUB – Thun Bahnhof,424.9563897
+HUB – Thun Bahnhof,BLS S41/S42 – Heimberg/Steffisburg,424.9563897
+SBB IC/EC/ICE – Spiez Brig Interlaken,BLS S1 – Freiburg/Fribourg ↔ Bern,421.7527589
+BLS S1 – Freiburg/Fribourg ↔ Bern,SBB IC/EC/ICE – Spiez Brig Interlaken,421.7527589
+Stocken/Pohlern (z.B. Bus 3),BLS S44/S4 – Gürbetal/Seftigen,395.6461475
+BLS S44/S4 – Gürbetal/Seftigen,Stocken/Pohlern (z.B. Bus 3),395.6461475
+Thunersee-Nordufer (z.B. Bus 21),SBB IC/EC/ICE – Bern (z.B. Zürich),389.7936397
+SBB IC/EC/ICE – Bern (z.B. Zürich),Thunersee-Nordufer (z.B. Bus 21),389.7936397
+Steffisburg-Korridor (z.B. Bus 41/42/43),SBB IC/EC/ICE – Bern (z.B. Zürich),381.4157267
+SBB IC/EC/ICE – Bern (z.B. Zürich),Steffisburg-Korridor (z.B. Bus 41/42/43),381.4157267
+Stocken/Pohlern (z.B. Bus 3),BLS S1 – Freiburg/Fribourg ↔ Bern,358.5051441
+BLS S1 – Freiburg/Fribourg ↔ Bern,Stocken/Pohlern (z.B. Bus 3),358.5051441
+SBB IC/EC/ICE – Spiez Brig Interlaken,Steffisburg-Korridor (z.B. Bus 41/42/43),327.9351206
+Steffisburg-Korridor (z.B. Bus 41/42/43),SBB IC/EC/ICE – Spiez Brig Interlaken,327.9351206
+SBB IC/EC/ICE – Bern (z.B. Zürich),BLS S41/S42 – Heimberg/Steffisburg,327.1531247
+BLS S41/S42 – Heimberg/Steffisburg,SBB IC/EC/ICE – Bern (z.B. Zürich),327.1531247
+SBB IC/EC/ICE – Bern (z.B. Zürich),Spiez/Einigen (z.B. Bus 1),266.6631519
+Spiez/Einigen (z.B. Bus 1),SBB IC/EC/ICE – Bern (z.B. Zürich),266.6631519
+BLS S41/S42 – Heimberg/Steffisburg,Stocken/Pohlern (z.B. Bus 3),185.0572492
+Stocken/Pohlern (z.B. Bus 3),BLS S41/S42 – Heimberg/Steffisburg,185.0572492
+Stocken/Pohlern (z.B. Bus 3),HUB – Thun Bahnhof,160.198303
+HUB – Thun Bahnhof,Stocken/Pohlern (z.B. Bus 3),160.198303
+Thunersee-Nordufer (z.B. Bus 21),SBB IC/EC/ICE – Spiez Brig Interlaken,152.6128304
+SBB IC/EC/ICE – Spiez Brig Interlaken,Thunersee-Nordufer (z.B. Bus 21),152.6128304
+Spiez/Einigen (z.B. Bus 1),HUB – Thun Bahnhof,144.9724708
+HUB – Thun Bahnhof,Spiez/Einigen (z.B. Bus 1),144.9724708
+Spiez/Einigen (z.B. Bus 1),BLS S1 – Freiburg/Fribourg ↔ Bern,144.2691219
+BLS S1 – Freiburg/Fribourg ↔ Bern,Spiez/Einigen (z.B. Bus 1),144.2691219
+BLS S44/S4 – Gürbetal/Seftigen,Spiez/Einigen (z.B. Bus 1),128.6517544
+Spiez/Einigen (z.B. Bus 1),BLS S44/S4 – Gürbetal/Seftigen,128.6517544
+BLS S44/S4 – Gürbetal/Seftigen,Steffisburg-Korridor (z.B. Bus 41/42/43),127.4471249
+Steffisburg-Korridor (z.B. Bus 41/42/43),BLS S44/S4 – Gürbetal/Seftigen,127.4471249
+Blumenstein/Wattenwil (z.B. Bus 50/51),SBB IC/EC/ICE – Bern (z.B. Zürich),117.0175182
+SBB IC/EC/ICE – Bern (z.B. Zürich),Blumenstein/Wattenwil (z.B. Bus 50/51),117.0175182
+Steffisburg-Korridor (z.B. Bus 41/42/43),BLS S1 – Freiburg/Fribourg ↔ Bern,116.278629
+BLS S1 – Freiburg/Fribourg ↔ Bern,Steffisburg-Korridor (z.B. Bus 41/42/43),116.278629
+Thunersee-Nordufer (z.B. Bus 21),HUB – Thun Bahnhof,113.0021757
+HUB – Thun Bahnhof,Thunersee-Nordufer (z.B. Bus 21),113.0021757
+BLS S41/S42 – Heimberg/Steffisburg,Spiez/Einigen (z.B. Bus 1),110.103383
+Spiez/Einigen (z.B. Bus 1),BLS S41/S42 – Heimberg/Steffisburg,110.103383
+Münsingen/Wichtrach (z.B. Bus M15),HUB – Thun Bahnhof,95.91172895
+HUB – Thun Bahnhof,Münsingen/Wichtrach (z.B. Bus M15),95.91172895
+BLS S1 – Freiburg/Fribourg ↔ Bern,Thunersee-Nordufer (z.B. Bus 21),94.69343907
+Thunersee-Nordufer (z.B. Bus 21),BLS S1 – Freiburg/Fribourg ↔ Bern,94.69343907
+BLS S44/S4 – Gürbetal/Seftigen,BLS S41/S42 – Heimberg/Steffisburg,94.38423229
+BLS S41/S42 – Heimberg/Steffisburg,BLS S44/S4 – Gürbetal/Seftigen,94.38423229
+Spiez/Einigen (z.B. Bus 1),SBB IC/EC/ICE – Spiez Brig Interlaken,94.25753949
+SBB IC/EC/ICE – Spiez Brig Interlaken,Spiez/Einigen (z.B. Bus 1),94.25753949
+Thunersee-Nordufer (z.B. Bus 21),BLS S44/S4 – Gürbetal/Seftigen,91.58141908
+BLS S44/S4 – Gürbetal/Seftigen,Thunersee-Nordufer (z.B. Bus 21),91.58141908
+HUB – Thun Bahnhof,BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),87.86558099
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),HUB – Thun Bahnhof,87.86558099
+SBB IC/EC/ICE – Spiez Brig Interlaken,Blumenstein/Wattenwil (z.B. Bus 50/51),82.8258172
+Blumenstein/Wattenwil (z.B. Bus 50/51),SBB IC/EC/ICE – Spiez Brig Interlaken,82.8258172
+SBB IC/EC/ICE – Spiez Brig Interlaken,SBB IC/EC/ICE – Spiez Brig Interlaken,62.53695008
+HUB – Thun Bahnhof,Steffisburg-Korridor (z.B. Bus 41/42/43),61.0781431
+Steffisburg-Korridor (z.B. Bus 41/42/43),HUB – Thun Bahnhof,61.0781431
+BLS S1 – Freiburg/Fribourg ↔ Bern,Blumenstein/Wattenwil (z.B. Bus 50/51),54.30602982
+Blumenstein/Wattenwil (z.B. Bus 50/51),BLS S1 – Freiburg/Fribourg ↔ Bern,54.30602982
+Blumenstein/Wattenwil (z.B. Bus 50/51),BLS S44/S4 – Gürbetal/Seftigen,51.25670446
+BLS S44/S4 – Gürbetal/Seftigen,Blumenstein/Wattenwil (z.B. Bus 50/51),51.25670446
+BLS S41/S42 – Heimberg/Steffisburg,BLS S1 – Freiburg/Fribourg ↔ Bern,49.55393492
+BLS S1 – Freiburg/Fribourg ↔ Bern,BLS S41/S42 – Heimberg/Steffisburg,49.55393492
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Stocken/Pohlern (z.B. Bus 3),46.31188094
+Stocken/Pohlern (z.B. Bus 3),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),46.31188094
+Thunersee-Nordufer (z.B. Bus 21),BLS S41/S42 – Heimberg/Steffisburg,44.44191579
+BLS S41/S42 – Heimberg/Steffisburg,Thunersee-Nordufer (z.B. Bus 21),44.44191579
+Waldeck (z.B. Bus 4),SBB IC/EC/ICE – Spiez Brig Interlaken,43.08864467
+SBB IC/EC/ICE – Spiez Brig Interlaken,Waldeck (z.B. Bus 4),43.08864467
+BLS S1 – Freiburg/Fribourg ↔ Bern,BLS S44/S4 – Gürbetal/Seftigen,38.27226871
+BLS S44/S4 – Gürbetal/Seftigen,BLS S1 – Freiburg/Fribourg ↔ Bern,38.27226871
+Thunersee-Nordufer (z.B. Bus 21),Stocken/Pohlern (z.B. Bus 3),37.44864943
+Stocken/Pohlern (z.B. Bus 3),Thunersee-Nordufer (z.B. Bus 21),37.44864943
+BLS S41/S42 – Heimberg/Steffisburg,BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),36.74559789
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),BLS S41/S42 – Heimberg/Steffisburg,36.74559789
+Stocken/Pohlern (z.B. Bus 3),Steffisburg-Korridor (z.B. Bus 41/42/43),34.21736975
+Steffisburg-Korridor (z.B. Bus 41/42/43),Stocken/Pohlern (z.B. Bus 3),34.21736975
+BLS S41/S42 – Heimberg/Steffisburg,Steffisburg-Korridor (z.B. Bus 41/42/43),29.81074675
+Steffisburg-Korridor (z.B. Bus 41/42/43),BLS S41/S42 – Heimberg/Steffisburg,29.81074675
+SBB IC/EC/ICE – Bern (z.B. Zürich),Waldeck (z.B. Bus 4),29.71911246
+Waldeck (z.B. Bus 4),SBB IC/EC/ICE – Bern (z.B. Zürich),29.71911246
+Thunersee-Nordufer (z.B. Bus 21),Spiez/Einigen (z.B. Bus 1),28.05079964
+Spiez/Einigen (z.B. Bus 1),Thunersee-Nordufer (z.B. Bus 21),28.05079964
+BLS S44/S4 – Gürbetal/Seftigen,BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),24.93068588
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),BLS S44/S4 – Gürbetal/Seftigen,24.93068588
+HUB – Thun Bahnhof,HUB – Thun Bahnhof,24.75095323
+Stocken/Pohlern (z.B. Bus 3),Spiez/Einigen (z.B. Bus 1),23.88446979
+Spiez/Einigen (z.B. Bus 1),Stocken/Pohlern (z.B. Bus 3),23.88446979
+BLS S1 – Freiburg/Fribourg ↔ Bern,Waldeck (z.B. Bus 4),22.69869371
+Waldeck (z.B. Bus 4),BLS S1 – Freiburg/Fribourg ↔ Bern,22.69869371
+SBB IC/EC/ICE – Bern (z.B. Zürich),Heiligenschwendi (z.B. Bus 31/32),20.35549207
+Heiligenschwendi (z.B. Bus 31/32),SBB IC/EC/ICE – Bern (z.B. Zürich),20.35549207
+Waldeck (z.B. Bus 4),HUB – Thun Bahnhof,18.85596187
+HUB – Thun Bahnhof,Waldeck (z.B. Bus 4),18.85596187
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Steffisburg-Korridor (z.B. Bus 41/42/43),18.25691286
+Steffisburg-Korridor (z.B. Bus 41/42/43),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),18.25691286
+SBB IC/EC/ICE – Bern (z.B. Zürich),BLS S44/S4 – Gürbetal/Seftigen,17.67098672
+BLS S44/S4 – Gürbetal/Seftigen,SBB IC/EC/ICE – Bern (z.B. Zürich),17.67098672
+Blumenstein/Wattenwil (z.B. Bus 50/51),HUB – Thun Bahnhof,16.95010773
+HUB – Thun Bahnhof,Blumenstein/Wattenwil (z.B. Bus 50/51),16.95010773
+BLS S41/S42 – Heimberg/Steffisburg,Blumenstein/Wattenwil (z.B. Bus 50/51),15.34570496
+Blumenstein/Wattenwil (z.B. Bus 50/51),BLS S41/S42 – Heimberg/Steffisburg,15.34570496
+Thunersee-Nordufer (z.B. Bus 21),Steffisburg-Korridor (z.B. Bus 41/42/43),13.70073951
+Steffisburg-Korridor (z.B. Bus 41/42/43),Thunersee-Nordufer (z.B. Bus 21),13.70073951
+SBB IC/EC/ICE – Bern (z.B. Zürich),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),13.45241782
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),SBB IC/EC/ICE – Bern (z.B. Zürich),13.45241782
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Blumenstein/Wattenwil (z.B. Bus 50/51),11.8540454
+Blumenstein/Wattenwil (z.B. Bus 50/51),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),11.8540454
+Münsingen/Wichtrach (z.B. Bus M15),Stocken/Pohlern (z.B. Bus 3),11.82370408
+Stocken/Pohlern (z.B. Bus 3),Münsingen/Wichtrach (z.B. Bus M15),11.82370408
+Heiligenschwendi (z.B. Bus 31/32),SBB IC/EC/ICE – Spiez Brig Interlaken,11.75655096
+SBB IC/EC/ICE – Spiez Brig Interlaken,Heiligenschwendi (z.B. Bus 31/32),11.75655096
+Thunersee-Nordufer (z.B. Bus 21),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),11.50948996
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Thunersee-Nordufer (z.B. Bus 21),11.50948996
+BLS S44/S4 – Gürbetal/Seftigen,Waldeck (z.B. Bus 4),10.50814559
+Waldeck (z.B. Bus 4),BLS S44/S4 – Gürbetal/Seftigen,10.50814559
+Blumenstein/Wattenwil (z.B. Bus 50/51),Steffisburg-Korridor (z.B. Bus 41/42/43),7.687128186
+Steffisburg-Korridor (z.B. Bus 41/42/43),Blumenstein/Wattenwil (z.B. Bus 50/51),7.687128186
+Spiez/Einigen (z.B. Bus 1),Blumenstein/Wattenwil (z.B. Bus 50/51),7.487891819
+Blumenstein/Wattenwil (z.B. Bus 50/51),Spiez/Einigen (z.B. Bus 1),7.487891819
+BLS S1 – Freiburg/Fribourg ↔ Bern,Heiligenschwendi (z.B. Bus 31/32),7.358224416
+Heiligenschwendi (z.B. Bus 31/32),BLS S1 – Freiburg/Fribourg ↔ Bern,7.358224416
+Heiligenschwendi (z.B. Bus 31/32),BLS S44/S4 – Gürbetal/Seftigen,7.353990235
+BLS S44/S4 – Gürbetal/Seftigen,Heiligenschwendi (z.B. Bus 31/32),7.353990235
+Waldeck (z.B. Bus 4),Steffisburg-Korridor (z.B. Bus 41/42/43),6.393189257
+Steffisburg-Korridor (z.B. Bus 41/42/43),Waldeck (z.B. Bus 4),6.393189257
+Steffisburg-Korridor (z.B. Bus 41/42/43),Spiez/Einigen (z.B. Bus 1),6.121755856
+Spiez/Einigen (z.B. Bus 1),Steffisburg-Korridor (z.B. Bus 41/42/43),6.121755856
+BLS S1 – Freiburg/Fribourg ↔ Bern,BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),5.599278278
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),BLS S1 – Freiburg/Fribourg ↔ Bern,5.599278278
+Blumenstein/Wattenwil (z.B. Bus 50/51),Thunersee-Nordufer (z.B. Bus 21),5.16056203
+Thunersee-Nordufer (z.B. Bus 21),Blumenstein/Wattenwil (z.B. Bus 50/51),5.16056203
+Waldeck (z.B. Bus 4),BLS S41/S42 – Heimberg/Steffisburg,4.898010015
+BLS S41/S42 – Heimberg/Steffisburg,Waldeck (z.B. Bus 4),4.898010015
+Steffisburg-Korridor (z.B. Bus 41/42/43),Münsingen/Wichtrach (z.B. Bus M15),4.860875636
+Münsingen/Wichtrach (z.B. Bus M15),Steffisburg-Korridor (z.B. Bus 41/42/43),4.860875636
+Spiez/Einigen (z.B. Bus 1),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),4.712665562
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Spiez/Einigen (z.B. Bus 1),4.712665562
+Heiligenschwendi (z.B. Bus 31/32),BLS S41/S42 – Heimberg/Steffisburg,4.460890556
+BLS S41/S42 – Heimberg/Steffisburg,Heiligenschwendi (z.B. Bus 31/32),4.460890556
+Blumenstein/Wattenwil (z.B. Bus 50/51),Stocken/Pohlern (z.B. Bus 3),3.786400145
+Stocken/Pohlern (z.B. Bus 3),Blumenstein/Wattenwil (z.B. Bus 50/51),3.786400145
+BLS S1 – Freiburg/Fribourg ↔ Bern,SBB IC/EC/ICE – Bern (z.B. Zürich),3.775656029
+SBB IC/EC/ICE – Bern (z.B. Zürich),BLS S1 – Freiburg/Fribourg ↔ Bern,3.775656029
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),SBB IC/EC/ICE – Spiez Brig Interlaken,3.590003812
+SBB IC/EC/ICE – Spiez Brig Interlaken,Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),3.590003812
+Heiligenschwendi (z.B. Bus 31/32),HUB – Thun Bahnhof,3.051121623
+HUB – Thun Bahnhof,Heiligenschwendi (z.B. Bus 31/32),3.051121623
+Waldeck (z.B. Bus 4),Spiez/Einigen (z.B. Bus 1),2.543229257
+Spiez/Einigen (z.B. Bus 1),Waldeck (z.B. Bus 4),2.543229257
+Heiligenschwendi (z.B. Bus 31/32),Stocken/Pohlern (z.B. Bus 3),2.388195693
+Stocken/Pohlern (z.B. Bus 3),Heiligenschwendi (z.B. Bus 31/32),2.388195693
+Stocken/Pohlern (z.B. Bus 3),Stocken/Pohlern (z.B. Bus 3),2.274146423
+Waldeck (z.B. Bus 4),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),2.09557742
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Waldeck (z.B. Bus 4),2.09557742
+Heiligenschwendi (z.B. Bus 31/32),Spiez/Einigen (z.B. Bus 1),2.020194058
+Spiez/Einigen (z.B. Bus 1),Heiligenschwendi (z.B. Bus 31/32),2.020194058
+Thunersee-Nordufer (z.B. Bus 21),Waldeck (z.B. Bus 4),1.824878788
+Waldeck (z.B. Bus 4),Thunersee-Nordufer (z.B. Bus 21),1.824878788
+Münsingen/Wichtrach (z.B. Bus M15),Blumenstein/Wattenwil (z.B. Bus 50/51),1.810227715
+Blumenstein/Wattenwil (z.B. Bus 50/51),Münsingen/Wichtrach (z.B. Bus M15),1.810227715
+Waldeck (z.B. Bus 4),Stocken/Pohlern (z.B. Bus 3),1.738171967
+Stocken/Pohlern (z.B. Bus 3),Waldeck (z.B. Bus 4),1.738171967
+Münsingen/Wichtrach (z.B. Bus M15),Spiez/Einigen (z.B. Bus 1),1.69212384
+Spiez/Einigen (z.B. Bus 1),Münsingen/Wichtrach (z.B. Bus M15),1.69212384
+BLS S44/S4 – Gürbetal/Seftigen,BLS S44/S4 – Gürbetal/Seftigen,1.23411119
+SBB IC/EC/ICE – Spiez Brig Interlaken,SBB IC/EC/ICE – Bern (z.B. Zürich),1.122703774
+SBB IC/EC/ICE – Bern (z.B. Zürich),SBB IC/EC/ICE – Spiez Brig Interlaken,1.122703774
+Münsingen/Wichtrach (z.B. Bus M15),Thunersee-Nordufer (z.B. Bus 21),1.1000607
+Thunersee-Nordufer (z.B. Bus 21),Münsingen/Wichtrach (z.B. Bus M15),1.1000607
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),SBB IC/EC/ICE – Spiez Brig Interlaken,1.054291231
+SBB IC/EC/ICE – Spiez Brig Interlaken,BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),1.054291231
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),BLS S41/S42 – Heimberg/Steffisburg,0.833507936
+BLS S41/S42 – Heimberg/Steffisburg,Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.833507936
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),BLS S44/S4 – Gürbetal/Seftigen,0.833064802
+BLS S44/S4 – Gürbetal/Seftigen,Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.833064802
+Heiligenschwendi (z.B. Bus 31/32),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),0.772492307
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Heiligenschwendi (z.B. Bus 31/32),0.772492307
+Heiligenschwendi (z.B. Bus 31/32),Blumenstein/Wattenwil (z.B. Bus 50/51),0.57293005
+Blumenstein/Wattenwil (z.B. Bus 50/51),Heiligenschwendi (z.B. Bus 31/32),0.57293005
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),BLS S1 – Freiburg/Fribourg ↔ Bern,0.537692668
+BLS S1 – Freiburg/Fribourg ↔ Bern,Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.537692668
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),HUB – Thun Bahnhof,0.457609427
+HUB – Thun Bahnhof,Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.457609427
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),Spiez/Einigen (z.B. Bus 1),0.385468015
+Spiez/Einigen (z.B. Bus 1),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.385468015
+Münsingen/Wichtrach (z.B. Bus M15),SBB IC/EC/ICE – Spiez Brig Interlaken,0.332275526
+SBB IC/EC/ICE – Spiez Brig Interlaken,Münsingen/Wichtrach (z.B. Bus M15),0.332275526
+Heiligenschwendi (z.B. Bus 31/32),Thunersee-Nordufer (z.B. Bus 21),0.327408914
+Thunersee-Nordufer (z.B. Bus 21),Heiligenschwendi (z.B. Bus 31/32),0.327408914
+Heiligenschwendi (z.B. Bus 31/32),Waldeck (z.B. Bus 4),0.314387939
+Waldeck (z.B. Bus 4),Heiligenschwendi (z.B. Bus 31/32),0.314387939
+BLS S41/S42 – Heimberg/Steffisburg,BLS S41/S42 – Heimberg/Steffisburg,0.284990632
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),Thunersee-Nordufer (z.B. Bus 21),0.230118026
+Thunersee-Nordufer (z.B. Bus 21),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.230118026
+Münsingen/Wichtrach (z.B. Bus M15),Waldeck (z.B. Bus 4),0.225453292
+Waldeck (z.B. Bus 4),Münsingen/Wichtrach (z.B. Bus M15),0.225453292
+Münsingen/Wichtrach (z.B. Bus M15),BLS S41/S42 – Heimberg/Steffisburg,0.210414518
+BLS S41/S42 – Heimberg/Steffisburg,Münsingen/Wichtrach (z.B. Bus M15),0.210414518
+Münsingen/Wichtrach (z.B. Bus M15),Heiligenschwendi (z.B. Bus 31/32),0.179665973
+Heiligenschwendi (z.B. Bus 31/32),Münsingen/Wichtrach (z.B. Bus M15),0.179665973
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),0.17161671
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.17161671
+Stocken/Pohlern (z.B. Bus 3),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.133606276
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),Stocken/Pohlern (z.B. Bus 3),0.133606276
+Unassigned,BLS S41/S42 – Heimberg/Steffisburg,0.079117457
+BLS S41/S42 – Heimberg/Steffisburg,Unassigned,0.079117457
+SBB IC/EC/ICE – Bern (z.B. Zürich),BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),0.059023892
+BLS RE1 – Lötschberg-Südrampe (z.B. „Goppenstein“),SBB IC/EC/ICE – Bern (z.B. Zürich),0.059023892
+Blumenstein/Wattenwil (z.B. Bus 50/51),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.053864443
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),Blumenstein/Wattenwil (z.B. Bus 50/51),0.053864443
+Waldeck (z.B. Bus 4),Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),0.040038981
+Steffisburg Ziegeleistrasse Homberg (z.B Bus 33),Waldeck (z.B. Bus 4),0.040038981
+Steffisburg-Korridor (z.B. Bus 41/42/43),Heiligenschwendi (z.B. Bus 31/32),0.012061418
+Heiligenschwendi (z.B. Bus 31/32),Steffisburg-Korridor (z.B. Bus 41/42/43),0.012061418
+Münsingen/Wichtrach (z.B. Bus M15),SBB IC/EC/ICE – Bern (z.B. Zürich),6.61E-05
+SBB IC/EC/ICE – Bern (z.B. Zürich),Münsingen/Wichtrach (z.B. Bus M15),6.61E-05
