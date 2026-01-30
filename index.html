@@ -1,237 +1,1865 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Korridor-Ausgaben</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STI Mobilitätsreport – Interaktive</title>
+  <link rel="stylesheet" href="./ttnorms.css">
   <style>
-    :root {
-      --bg: #f7f7f5;
+    @font-face{
+      font-family:"TT Norms Pro";
+      src:
+        url("/TTNorms®Pro/woff2/TT-Norms-Pro-Regular.woff2") format("woff2"),
+        url("/TTNorms®Pro/woff/TT-Norms-Pro-Regular.woff") format("woff");
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    @font-face{
+      font-family:"TT Norms Pro";
+      src:
+        url("/TTNorms®Pro/woff2/TT-Norms-Pro-Medium.woff2") format("woff2"),
+        url("/TTNorms®Pro/woff/TT-Norms-Pro-Medium.woff") format("woff");
+      font-weight:500;
+      font-style:normal;
+      font-display:swap;
+    }
+    @font-face{
+      font-family:"TT Norms Pro";
+      src:
+        url("/TTNorms®Pro/woff2/TT_Norms_Pro-DemiBold.woff2") format("woff2"),
+        url("/TTNorms®Pro/woff/TT_Norms_Pro-DemiBold.woff") format("woff");
+      font-weight:600;
+      font-style:normal;
+      font-display:swap;
+    }
+    @font-face{
+      font-family:"TT Norms Pro";
+      src:
+        url("/TTNorms®Pro/woff2/TT_Norms_Pro-Bold.woff2") format("woff2"),
+        url("/TTNorms®Pro/woff/TT_Norms_Pro-Bold.woff") format("woff");
+      font-weight:700;
+      font-style:normal;
+      font-display:swap;
+    }
+    :root{
+      --bg: #f5f7fb;
       --panel: #ffffff;
-      --text: #1f2328;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --accent: #0f766e;
+      --card: #f8fafc;
+      --text: #0f172a;
+      --text-soft: #1f2937;
+      --muted: #475569;
+      --heading: #0f172a;
+      --accent: #0ea5e9;
+      --accent-2: #f59e0b;
+      --accent-soft: rgba(14,165,233,0.12);
+      --accent-soft-2: rgba(245,158,11,0.12);
+      --accent-border: rgba(14,165,233,0.55);
+      --accent-border-strong: rgba(14,165,233,0.75);
+      --accent-glow: rgba(14,165,233,0.18);
+      --accent-sheen-1: rgba(14,165,233,0.16);
+      --accent-sheen-2: rgba(245,158,11,0.18);
+      --accent-shadow: rgba(14,165,233,0.2);
+      --border: rgba(15,23,42,0.14);
+      --radius: 10px;
+      --shadow: 0 12px 32px rgba(15,23,42,0.12);
+      --surface-1: rgba(15,23,42,0.03);
+      --surface-2: rgba(15,23,42,0.04);
+      --surface-3: rgba(15,23,42,0.06);
+      --panel-sheen-1: rgba(15,23,42,0.02);
+      --panel-sheen-2: rgba(15,23,42,0.01);
+      --bg-grad-1: rgba(14,165,233,0.12);
+      --bg-grad-2: rgba(245,158,11,0.1);
+      --danger: #b91c1c;
+      --embed-bg: #f8fafc;
+      --code-bg: #f7f6f3;
+      --code-border: rgba(15,23,42,0.12);
+      --code-text: #1f2937;
+      --code-inline-bg: rgba(15,23,42,0.04);
+      --font-base: 16px;
+      --font-scale: 1;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      color: var(--text);
+    html[data-theme="dark"]{
+      --bg: #0b1022;
+      --panel: #0f172a;
+      --card: #0f172a;
+      --text: #e2e8f0;
+      --text-soft: #e5e7eb;
+      --muted: #94a3b8;
+      --heading: #f8fafc;
+      --accent: #22d3ee;
+      --accent-2: #a855f7;
+      --accent-soft: rgba(34,211,238,0.12);
+      --accent-soft-2: rgba(168,85,247,0.18);
+      --accent-border: rgba(34,211,238,0.6);
+      --accent-border-strong: rgba(34,211,238,0.8);
+      --accent-glow: rgba(34,211,238,0.15);
+      --accent-sheen-1: rgba(34,211,238,0.15);
+      --accent-sheen-2: rgba(168,85,247,0.18);
+      --accent-shadow: rgba(34,211,238,0.15);
+      --border: rgba(148,163,184,0.25);
+      --shadow: 0 12px 50px rgba(0,0,0,0.28);
+      --surface-1: rgba(255,255,255,0.02);
+      --surface-2: rgba(255,255,255,0.04);
+      --surface-3: rgba(255,255,255,0.03);
+      --panel-sheen-1: rgba(255,255,255,0.02);
+      --panel-sheen-2: rgba(255,255,255,0.01);
+      --bg-grad-1: rgba(34,211,238,0.12);
+      --bg-grad-2: rgba(168,85,247,0.08);
+      --danger: #fca5a5;
+      --embed-bg: #0b1022;
+      --code-bg: rgba(15,23,42,0.7);
+      --code-border: rgba(148,163,184,0.25);
+      --code-text: #e2e8f0;
+      --code-inline-bg: rgba(148,163,184,0.12);
+    }
+    html[data-text-size="large"]{
+      --font-base: 19px;
+      --font-scale: 1.15;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"TT Norms Pro","Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+      font-size:var(--font-base);
       background: var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      padding:18px;
+      transition:background-color 0.2s ease,color 0.2s ease;
     }
-    header {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      background: var(--panel);
-      position: sticky;
-      top: 0;
-      z-index: 5;
+    html[data-theme="dark"] body{
+      background: radial-gradient(120% 140% at 15% 20%, var(--bg-grad-1) 0, var(--bg-grad-2) 45%, transparent 70%), var(--bg);
     }
-    header h1 {
-      margin: 0 0 6px 0;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-0.01em}
+    p{margin:0}
+    .app-shell{
+      max-width:1400px;
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
     }
-    header p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
+    header.top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      padding:18px 20px;
+      background:var(--surface-1);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:12px;
+      z-index:10;
+      backdrop-filter:blur(8px);
+      transition:background-color 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease;
     }
-    .intro {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 12px 24px 0;
-      color: var(--muted);
-      font-size: 13px;
+    .top-left{display:flex;flex-direction:column;gap:10px;align-items:flex-start;flex:1}
+    .eyebrow{display:none;color:var(--muted);text-transform:uppercase;font-size:0.75rem;letter-spacing:0.08em;margin-bottom:4px;}
+    .subtitle{color:var(--muted);margin-top:6px;line-height:1.4}
+    .top-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .theme-toggle{
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      color:var(--text);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:0.78rem;
+      font-weight:600;
+      cursor:pointer;
+      letter-spacing:0.01em;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
     }
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 24px 40px;
-      display: grid;
-      gap: 24px;
+    .theme-toggle:hover{border-color:var(--accent-border)}
+    .theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      color:var(--text);
+      font-size:calc(0.9rem * var(--font-scale));
+      letter-spacing:0.01em;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
     }
-    section {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
+    .pill-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 0 6px var(--accent-glow);
     }
-    section h2 {
-      margin: 0 0 12px 0;
-      font-size: 16px;
-      font-weight: 700;
+    .layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:14px;
+      align-items:start;
     }
-    .frame {
-      width: 100%;
-      height: 640px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
+    aside{
+      position:sticky;
+      top:140px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
-    .toggle {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
+    .section-pill{
+      width:100%;
+      border:1px solid var(--border);
+      background:var(--surface-3);
+      color:var(--text);
+      border-radius:12px;
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:all 0.18s ease;
+      text-align:left;
     }
-    .toggle button {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      cursor: pointer;
+    .section-pill:hover{border-color:var(--accent-border);transform:translateY(-1px);}
+    .section-pill[data-active="true"]{
+      background:linear-gradient(135deg,var(--accent-sheen-1),var(--accent-sheen-2));
+      border-color:var(--accent-border-strong);
+      box-shadow:0 10px 30px var(--accent-shadow);
     }
-    .toggle button.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      font-weight: 600;
+    html:not([data-theme="dark"]) .section-pill[data-active="true"]{
+      background:var(--accent-soft);
+      box-shadow:none;
     }
-    .supplementary {
-      display: grid;
-      gap: 6px;
+    .pill-index{
+      width:36px;height:36px;border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
+      background:var(--accent-soft);
+      color:var(--text);
+      font-weight:700;
+      letter-spacing:0.04em;
     }
-    .supplementary a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 13px;
+    .pill-label{font-weight:600;flex:1}
+    main{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
-    .supplementary a:hover {
-      text-decoration: underline;
+    .panel{
+      border:1px solid var(--border);
+      background:linear-gradient(145deg,var(--panel-sheen-1),var(--panel-sheen-2)), var(--panel);
+      border-radius:var(--radius);
+      padding:14px 16px 18px;
+      box-shadow:var(--shadow);
+      transition:background-color 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;
     }
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 6px;
+    .panel-head{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:10px;margin-bottom:10px;
     }
-    @media (max-width: 900px) {
-      .frame { height: 520px; }
+    .panel-head h3{font-size:calc(1rem * var(--font-scale));color:var(--heading)}
+    .section-meta{padding:14px 16px;border:1px dashed var(--border);border-radius:14px;margin-bottom:6px}
+    .section-meta h2{font-size:calc(1.35rem * var(--font-scale))}
+    .section-meta p{color:var(--muted);margin-top:6px}
+    .muted{color:var(--muted)}
+    .error{color:var(--danger)}
+    #markdown,[data-role="knoten-doc"]{line-height:1.6;color:var(--text-soft)}
+    #markdown h1,#markdown h2,#markdown h3,
+    [data-role="knoten-doc"] h1,[data-role="knoten-doc"] h2,[data-role="knoten-doc"] h3{color:var(--heading);margin:14px 0 8px}
+    #markdown p,[data-role="knoten-doc"] p{margin:10px 0}
+    #markdown ul,[data-role="knoten-doc"] ul{padding-left:20px;margin:8px 0}
+    #markdown li,[data-role="knoten-doc"] li{margin:6px 0}
+    #markdown img,[data-role="knoten-doc"] img{max-width:70%;height:auto;display:block;cursor:zoom-in}
+    [data-role="flughafen-markdown"] img,[data-role="freizeit-markdown"] img,
+    [data-role="tabs-content"] img{cursor:zoom-in}
+    .img-zoom-wrap{
+      position:relative;
+      display:inline-block;
+      max-width:100%;
+    }
+    .img-zoom-wrap::after{
+      content:"Klick für Vollbild";
+      position:absolute;
+      right:10px;
+      bottom:10px;
+      padding:6px 8px;
+      border-radius:8px;
+      background:rgba(15,23,42,0.72);
+      color:#fff;
+      font-size:0.78rem;
+      letter-spacing:0.01em;
+      opacity:0;
+      transform:translateY(4px);
+      transition:opacity 0.16s ease, transform 0.16s ease;
+      pointer-events:none;
+      box-shadow:0 10px 26px rgba(0,0,0,0.22);
+    }
+    .img-zoom-wrap:hover::after,
+    .img-zoom-wrap:focus-within::after{
+      opacity:1;
+      transform:translateY(0);
+    }
+    #markdown pre,[data-role="knoten-doc"] pre{
+      background:var(--code-bg);
+      border:1px solid var(--code-border);
+      border-radius:10px;
+      padding:12px 14px;
+      overflow:auto;
+      font-size:calc(0.9rem * var(--font-scale));
+      line-height:1.5;
+    }
+    #markdown code,[data-role="knoten-doc"] code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,"Liberation Mono","Courier New",monospace;
+      font-size:calc(0.9em * var(--font-scale));
+      color:var(--code-text);
+      background:var(--code-inline-bg);
+      border:1px solid var(--code-border);
+      border-radius:6px;
+      padding:0.1em 0.35em;
+    }
+    #markdown pre code,[data-role="knoten-doc"] pre code{
+      background:none;
+      border:none;
+      padding:0;
+      padding:0;
+      border-radius:0;
+    }
+    #markdown mark,[data-role="knoten-doc"] mark{
+      background:linear-gradient(180deg, rgba(255,244,173,0.65) 0%, rgba(255,244,173,0.65) 100%);
+      box-shadow:inset 0 -0.22em 0 rgba(212,168,0,0.85);
+      color:inherit;
+      padding:0 0.08em;
+      border-radius:4px;
+    }
+    #markdown figure,[data-role="knoten-doc"] figure{margin:16px 18px}
+    #markdown figure img,[data-role="knoten-doc"] figure img{max-width:calc(100% - 36px);margin:0 auto}
+    @media(min-width:1200px){
+      #markdown figure,[data-role="knoten-doc"] figure{margin:18px 48px}
+      #markdown figure img,[data-role="knoten-doc"] figure img{max-width:calc(100% - 96px)}
+    }
+    #markdown figcaption,[data-role="knoten-doc"] figcaption{
+      margin-top:8px;
+      font-size:0.9rem;
+      color:var(--muted);
+      text-align:center;
+    }
+    .image-modal{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(15,23,42,0.72);
+      z-index:1200;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity 0.2s ease, visibility 0s linear 0.2s;
+    }
+    .image-modal[data-open="true"]{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transition:opacity 0.24s ease;
+    }
+    .image-modal-close{
+      position:absolute;
+      top:14px;
+      right:16px;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.25);
+      background:rgba(15,23,42,0.55);
+      color:#fff;
+      font-size:1.6rem;
+      line-height:1;
+      cursor:pointer;
+    }
+    .image-modal-close:hover{background:rgba(15,23,42,0.72)}
+    .image-modal-img{
+      max-width:min(96vw,1680px);
+      max-height:92vh;
+      width:auto;
+      height:auto;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:0 30px 90px rgba(0,0,0,0.45);
+      background:#fff;
+      transform:scale(0.97);
+      opacity:0.96;
+      transition:transform 0.24s ease, opacity 0.24s ease;
+    }
+    .image-modal[data-open="true"] .image-modal-img{
+      transform:scale(1);
+      opacity:1;
+    }
+    body.modal-open{overflow:hidden}
+    #markdown .footnotes,[data-role="knoten-doc"] .footnotes{
+      border-top:1px solid var(--border);
+      margin-top:18px;
+      padding-top:10px;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+    #markdown .footnotes ol,[data-role="knoten-doc"] .footnotes ol{padding-left:20px}
+    #markdown .footnote-ref a,[data-role="knoten-doc"] .footnote-ref a{color:var(--accent);text-decoration:none}
+    #markdown .footnote-backref,[data-role="knoten-doc"] .footnote-backref{color:var(--accent)}
+    #markdown table,[data-role="knoten-doc"] table{
+      width:max-content;
+      max-width:100%;
+      border-collapse:collapse;
+      margin:0;
+      font-size:0.95rem;
+    }
+    #markdown th,[data-role="knoten-doc"] th,
+    #markdown td,[data-role="knoten-doc"] td{
+      border:1px solid var(--border);
+      padding:8px 10px;
+      text-align:left;
+    }
+    #markdown .table-wrap,[data-role="knoten-doc"] .table-wrap{
+      overflow-x:auto;
+      max-width:100%;
+      margin:12px 18px;
+      border-radius:0;
+    }
+    #markdown th,[data-role="knoten-doc"] th{
+      background:var(--surface-2);
+      color:var(--heading);
+      font-weight:600;
+    }
+    .report-title{
+      margin:0 0 10px;
+      font-size:1.6rem;
+      color:var(--heading);
+    }
+    .toc{
+      border:1px solid var(--border);
+      border-radius:10px;
+      background:var(--surface-1);
+      padding:12px 14px;
+      margin-bottom:14px;
+    }
+    .toc-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+      border:none;
+      background:none;
+      padding:0;
+      font-size:calc(0.85rem * var(--font-scale));
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin-bottom:6px;
+      cursor:pointer;
+    }
+    .toc-title::after{
+      content:'▾';
+      font-size:calc(0.9rem * var(--font-scale));
+      transition:transform 0.2s ease;
+    }
+    .toc-title[aria-expanded="false"]::after{transform:rotate(-90deg)}
+    .toc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    .toc-list[hidden]{display:none}
+    .toc-item a{color:var(--text);text-decoration:none;font-weight:600}
+    .toc-item a:hover{text-decoration:underline}
+    .toc-item--sub{padding-left:12px}
+    .toc-item--sub a{font-weight:400}
+    .downloads{display:flex;flex-wrap:wrap;gap:8px}
+    .downloads-note{flex-basis:100%}
+    .download-chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:10px;
+      background:var(--surface-2);
+      border:1px solid var(--border);
+      color:var(--text);text-decoration:none;font-weight:600;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+    }
+    .download-chip:hover{border-color:var(--accent-border)}
+    .asset-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:12px;
+    }
+    .asset-grid.single-column{grid-template-columns:1fr}
+    .asset-card{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      background:var(--surface-1);
+      display:flex;flex-direction:column;gap:10px;
+      min-height:180px;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+    }
+    .asset-card.full-width{grid-column:1 / -1}
+    .asset-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .asset-type{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 8px;border-radius:999px;
+      background:var(--accent-soft);
+      border:1px solid var(--accent-border);
+      color:var(--text);text-transform:uppercase;font-size:0.75rem;letter-spacing:0.06em;
+    }
+    .asset-desc{color:var(--muted);font-size:0.95rem;line-height:1.4}
+    .asset-placeholder{
+      border:1px dashed var(--border);
+      border-radius:12px;
+      min-height:160px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);
+      font-weight:600;
+      letter-spacing:0.03em;
+    }
+    .asset-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--border);
+      background:var(--surface-2);
+      color:var(--text);
+      border-radius:10px;
+      padding:10px 12px;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      font-weight:600;
+    }
+    .btn:hover{border-color:var(--accent-border-strong);transform:translateY(-1px)}
+    .btn.secondary{background:transparent}
+    iframe.embed{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--embed-bg);
+      transition:background-color 0.2s ease,border-color 0.2s ease;
+    }
+    .pdf-container{border:1px dashed var(--border);border-radius:12px;padding:8px}
+    .asset-group{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .asset-group-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .asset-group h4{margin:0;font-size:1.25rem}
+    .knoten-panel-title{font-size:1.4rem;margin:0}
+    .knoten-panel-body{display:flex;flex-direction:column;gap:12px}
+    /* Tabs */
+    .tab-wrapper{display:none;flex-direction:column;gap:12px}
+    .tab-nav{
+      display:flex;flex-wrap:wrap;gap:8px;
+    }
+    .tab-select{display:flex;flex-direction:column;gap:6px}
+    .tab-select span{font-size:calc(0.85rem * var(--font-scale));color:var(--muted);letter-spacing:0.02em}
+    .tab-select select{
+      appearance:none;
+      border:1px solid var(--border);
+      background:var(--surface-3);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      min-width:220px;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+    }
+    .asset-filter{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .tab-panels{border:1px dashed var(--border);border-radius:12px;padding:12px;min-height:160px}
+    .tab-panel{display:none}
+    .tab-panel[data-active="true"]{display:block}
+    .pdf-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:12px;
+    }
+    [data-role="freizeit-pdfs"].pdf-grid{
+      grid-template-columns:1fr;
+    }
+    .pdf-placeholder{
+      border:1px dashed var(--border);
+      border-radius:12px;
+      padding:16px;
+      color:var(--muted);
+      text-align:center;
+      min-height:240px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+    }
+    .section-select{display:none;flex-direction:column;gap:6px}
+    .section-select span{font-size:0.85rem;color:var(--muted);letter-spacing:0.02em}
+    .section-select select{
+      appearance:none;
+      border:1px solid var(--border);
+      background:var(--surface-3);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      width:100%;
+      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+    }
+    @media(max-width:1080px){
+      .layout{grid-template-columns:1fr}
+      aside{position:static;flex-direction:row;flex-wrap:wrap}
+      .section-pill{width:auto;flex:1 1 180px;padding:8px 10px}
+      .pill-index{width:30px;height:30px;border-radius:999px;font-size:0.85rem}
+    }
+    @media(max-width:700px){
+      body{padding:12px}
+      header.top{flex-direction:column;position:static}
+      aside{flex-direction:column}
+      .section-pill{display:none}
+      .section-select{display:flex}
+      #markdown figcaption,[data-role="knoten-doc"] figcaption{font-size:0.8rem}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Korridor-Ausgaben</h1>
-    <p>Hauptansichten: Korridorkarte, Korridor-Balkendiagramm/Treemap, Korridormatrizen.</p>
-  </header>
+  <div class="app-shell">
+    <header class="top">
+      <div class="top-left">
+        <p class="eyebrow"></p>
+        <h1 data-role="report-title">STI Mobilitätsreport – Interaktive</h1>
+        <p class="subtitle" data-role="report-subtitle">Korridorkarte, Balkendiagramm, Treemap, Matrizen & Links aus sections.json</p>
+      </div>
+      <div class="top-actions">
+        <button class="theme-toggle" type="button" data-role="theme-toggle" aria-label="Switch to dark mode">Dark mode</button>
+        <button class="theme-toggle" type="button" data-role="text-toggle" aria-label="Switch to large text">Large text</button>
+      </div>
+    </header>
 
-  <div class="intro">
-    <p>Diese Seite fasst die wichtigsten Korridorergebnisse zusammen. Die Umschalter wechseln die Ansicht an derselben Stelle, damit Vergleiche schnell bleiben.</p>
+    <div class="layout">
+      <aside data-role="section-list"></aside>
+      <main>
+        <section class="panel">
+          <div class="panel-head">
+          </div>
+          <div id="markdown" data-role="markdown"></div>
+        </section>
+
+        <section class="panel" data-role="pdf-panel">
+          <div class="panel-head">
+            <h3 data-role="pdf-heading">Präsentation / PDF</h3>
+          </div>
+          <div class="pdf-container" data-role="pdf-container"></div>
+        </section>
+
+        <section class="panel" data-role="report-pdf-panel" style="display:none;">
+          <div class="panel-head">
+            <div>
+              <h3 data-role="report-pdf-heading">Report (PDF Version)</h3>
+              <p class="muted" data-role="report-pdf-byline">Die PDF Version wird automatisch erzeugt</p>
+            </div>
+          </div>
+          <div class="pdf-container" data-role="report-pdf-container"></div>
+        </section>
+
+        <section class="panel" data-role="assets-panel">
+          <div class="panel-head">
+          </div>
+          <div class="asset-filter" data-role="assets-filter" hidden></div>
+          <div class="asset-grid" data-role="assets"></div>
+        </section>
+
+        <section class="panel tab-wrapper" data-role="tabs-wrapper">
+          <div class="panel-head">
+            <h3 data-role="tabs-heading">Hotspot-Detail</h3>
+          </div>
+          <div class="tab-nav" data-role="tabs-nav"></div>
+          <div class="tab-panels" data-role="tabs-content"></div>
+        </section>
+
+        <section class="panel" data-role="flughafen-panel" hidden>
+          <div class="panel-head">
+            <h3 data-role="flughafen-heading">Flughafen Zürich</h3>
+          </div>
+          <div data-role="flughafen-markdown"></div>
+          <div class="pdf-grid" data-role="flughafen-pdfs"></div>
+        </section>
+
+        <section class="panel" data-role="freizeit-panel" hidden>
+          <div class="panel-head">
+            <h3 data-role="freizeit-heading">Freizeithotspots</h3>
+          </div>
+          <div data-role="freizeit-markdown"></div>
+          <div class="pdf-grid" data-role="freizeit-pdfs"></div>
+        </section>
+
+        <section class="panel" data-role="knoten-doc-panel">
+          <div class="panel-head"></div>
+          <div data-role="knoten-doc"></div>
+        </section>
+
+        <section class="panel" data-role="downloads-panel">
+          <div class="panel-head">
+            <h3>Downloads</h3>
+          </div>
+          <div class="downloads" data-role="downloads"></div>
+        </section>
+
+        <section class="panel" data-role="help-panel">
+          <div class="panel-head">
+            <h3 data-role="help-heading">Hilfe</h3>
+          </div>
+          <div data-role="help-embed"></div>
+        </section>
+      </main>
+    </div>
   </div>
 
-  <main>
-    <section>
-      <h2>Karte</h2>
-      <iframe class="frame" id="mapFrame" src="corridor_map.html" title="Korridorkarte"></iframe>
-    </section>
+  <div class="image-modal" data-role="image-modal" data-open="false" aria-hidden="true">
+    <button class="image-modal-close" type="button" data-role="image-modal-close" aria-label="Bild schliessen">&times;</button>
+    <img class="image-modal-img" data-role="image-modal-img" alt="">
+  </div>
 
-    <section>
-      <h2>Balkendiagramm + Treemap</h2>
-      <div class="toggle" id="barTreemapToggle">
-        <button class="active" data-src="bar_corridors_merged_sum_ov_nocategory.html">Balkendiagramm</button>
-        <button data-src="treemap_corridor_waypoint_merged_sum_ov.html">Treemap</button>
-      </div>
-      <iframe class="frame" id="barTreemapFrame" src="bar_corridors_merged_sum_ov_nocategory.html" title="Korridor-Balkendiagramm"></iframe>
-    </section>
-
-    <section>
-      <h2>Matrix</h2>
-      <div class="toggle" id="matrixToggle">
-        <button class="active" data-src="corridor_matrix_all_ov_symmetric.html">Alle Korridore (symmetrisch)</button>
-        <button data-src="corridor_matrix_bus_to_bus_ov_symmetric.html">Bus &lt;-&gt; Bus (symmetrisch)</button>
-        <button data-src="corridor_matrix_bus_train_ov_symmetric.html">Bus &lt;-&gt; Zug (symmetrisch)</button>
-      </div>
-      <iframe class="frame" id="matrixFrame" src="corridor_matrix_all_ov_symmetric.html" title="Korridormatrix"></iframe>
-      <div class="hint">Der Umschalter wechselt die Matrixansicht; der Frame wird direkt aktualisiert.</div>
-    </section>
-
-    <section>
-      <h2>Weitere Links</h2>
-      <div class="supplementary">
-        <a href="treemap_connectors_merged_sum_ov.html" target="_blank" rel="noopener">Connector-Treemap</a>
-        <a href="treemap_stops_by_connector_merged_sum_ov.html" target="_blank" rel="noopener">Haltestellen nach Connector (Treemap)</a>
-        <a href="bar_waypoints_merged_sum_ov_nocategory.html" target="_blank" rel="noopener">Wegpunkt-Balkendiagramm</a>
-        <a href="waypoint_matrix_top30_ov_symmetric.html" target="_blank" rel="noopener">Wegpunkt-Matrix (Top-30)</a>
-      </div>
-    </section>
-  </main>
-
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-footnote@3/dist/markdown-it-footnote.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-mark@3/dist/markdown-it-mark.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
   <script>
-    function hidePlotlyTitles(iframe) {
-      try {
-        var doc = iframe.contentDocument || iframe.contentWindow.document;
-        if (!doc) return;
-        var nodes = doc.querySelectorAll("g.gtitle, .gtitle, .infolayer .gtitle, .plotly .gtitle");
-        for (var i = 0; i < nodes.length; i++) {
-          nodes[i].style.display = "none";
-        }
-      } catch (err) {
-        return;
-      }
-    }
+    (() => {
+      const THEME_KEY = 'zh-report-theme';
+      const TEXT_KEY = 'zh-report-text-size';
+      const themeToggle = document.querySelector('[data-role="theme-toggle"]');
+      const textToggle = document.querySelector('[data-role="text-toggle"]');
 
-    function attachPlotlyTitleHider(iframe) {
-      if (!iframe) return;
-      iframe.addEventListener("load", function () {
-        var tries = 0;
-        function attempt() {
-          tries += 1;
-          hidePlotlyTitles(iframe);
-          if (tries < 5) {
-            setTimeout(attempt, 300);
+      initTheme();
+      initTextSize();
+
+      const md = window.markdownit({
+        html: true,
+        linkify: true,
+        typographer: true
+      }).use(window.markdownitFootnote).use(window.markdownitMark);
+
+      const defaultImageRenderer = md.renderer.rules.image || function(tokens, idx, options, env, self){
+        return self.renderToken(tokens, idx, options);
+      };
+
+      md.renderer.rules.image = function(tokens, idx, options, env, self){
+        const token = tokens[idx];
+        token.attrJoin('class', 'zoomable-image');
+        const title = token.attrGet('title');
+        const img = defaultImageRenderer(tokens, idx, options, env, self);
+        const wrappedImg = '<span class="img-zoom-wrap">' + img + '</span>';
+        if(!title){ return wrappedImg; }
+        const caption = md.utils.escapeHtml(title);
+        return '<figure class="md-figure">' + wrappedImg + '<figcaption>' + caption + '</figcaption></figure>';
+      };
+
+      const state = {
+        sections: [],
+        activeId: null,
+        configUrl: null
+      };
+
+      const ui = {
+        sectionList: document.querySelector('[data-role="section-list"]'),
+        markdown: document.querySelector('[data-role="markdown"]'),
+        markdownPanel: document.querySelector('[data-role="markdown"]')?.closest('.panel'),
+        main: document.querySelector('main'),
+        downloads: document.querySelector('[data-role="downloads"]'),
+        downloadsPanel: document.querySelector('[data-role="downloads-panel"]'),
+        knotenDocPanel: document.querySelector('[data-role="knoten-doc-panel"]'),
+        knotenDoc: document.querySelector('[data-role="knoten-doc"]'),
+        helpPanel: document.querySelector('[data-role="help-panel"]'),
+        helpHeading: document.querySelector('[data-role="help-heading"]'),
+        helpEmbed: document.querySelector('[data-role="help-embed"]'),
+        assets: document.querySelector('[data-role="assets"]'),
+        assetsPanel: document.querySelector('[data-role="assets-panel"]'),
+        assetsFilter: document.querySelector('[data-role="assets-filter"]'),
+        reportTitle: document.querySelector('[data-role="report-title"]'),
+        reportSubtitle: document.querySelector('[data-role="report-subtitle"]'),
+        pdfPanel: document.querySelector('[data-role="pdf-panel"]'),
+        pdfHeading: document.querySelector('[data-role="pdf-heading"]'),
+        pdfContainer: document.querySelector('[data-role="pdf-container"]'),
+        reportPdfPanel: document.querySelector('[data-role="report-pdf-panel"]'),
+        reportPdfHeading: document.querySelector('[data-role="report-pdf-heading"]'),
+        reportPdfContainer: document.querySelector('[data-role="report-pdf-container"]'),
+        flughafenPanel: document.querySelector('[data-role="flughafen-panel"]'),
+        flughafenHeading: document.querySelector('[data-role="flughafen-heading"]'),
+        flughafenMarkdown: document.querySelector('[data-role="flughafen-markdown"]'),
+        flughafenPdfs: document.querySelector('[data-role="flughafen-pdfs"]'),
+        freizeitPanel: document.querySelector('[data-role="freizeit-panel"]'),
+        freizeitHeading: document.querySelector('[data-role="freizeit-heading"]'),
+        freizeitMarkdown: document.querySelector('[data-role="freizeit-markdown"]'),
+        freizeitPdfs: document.querySelector('[data-role="freizeit-pdfs"]'),
+        tabsWrapper: document.querySelector('[data-role="tabs-wrapper"]'),
+      tabsNav: document.querySelector('[data-role="tabs-nav"]'),
+      tabsSelect: null,
+      tabsContent: document.querySelector('[data-role="tabs-content"]'),
+      tabsHeading: document.querySelector('[data-role="tabs-heading"]'),
+      sectionSelect: null,
+      toc: null,
+      imageModal: document.querySelector('[data-role="image-modal"]'),
+      imageModalImg: document.querySelector('[data-role="image-modal-img"]'),
+      imageModalClose: document.querySelector('[data-role="image-modal-close"]')
+    };
+
+      init();
+      window.addEventListener('hashchange', handleHashChange);
+
+      function initTheme(){
+        const stored = getStoredTheme();
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initial = stored || (prefersDark ? 'dark' : 'light');
+        applyTheme(initial, false);
+
+        if(themeToggle){
+          themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.dataset.theme || 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next, true);
+          });
+        }
+
+        if(window.matchMedia){
+          const media = window.matchMedia('(prefers-color-scheme: dark)');
+          media.addEventListener('change', (event) => {
+            if(getStoredTheme()){ return; }
+            applyTheme(event.matches ? 'dark' : 'light', false);
+          });
+        }
+      }
+
+      function initTextSize(){
+        const stored = getStoredTextSize();
+        const initial = stored || 'small';
+        applyTextSize(initial, false);
+        if(textToggle){
+          textToggle.addEventListener('click', () => {
+            const current = document.documentElement.dataset.textSize || 'small';
+            const next = current === 'large' ? 'small' : 'large';
+            applyTextSize(next, true);
+          });
+        }
+      }
+
+      function initImageModal(){
+        if(!ui.imageModal || !ui.imageModalImg){ return; }
+
+        document.addEventListener('click', (event) => {
+          const img = event.target.closest('img');
+          if(!img){ return; }
+          const withinMarkdown = img.closest(
+            '#markdown, [data-role="knoten-doc"], [data-role="flughafen-markdown"], [data-role="freizeit-markdown"], [data-role="tabs-content"]'
+          );
+          if(!withinMarkdown){ return; }
+          if(img.closest('[data-role="image-modal"]')){ return; }
+
+          const src = img.getAttribute('src');
+          if(!src){ return; }
+          if(img.closest('a')){ event.preventDefault(); }
+          openImageModal(src, img.getAttribute('alt') || '');
+        });
+
+        ui.imageModal.addEventListener('click', (event) => {
+          if(event.target === ui.imageModal){
+            closeImageModal();
+          }
+        });
+
+        if(ui.imageModalClose){
+          ui.imageModalClose.addEventListener('click', closeImageModal);
+        }
+
+        document.addEventListener('keydown', (event) => {
+          if(event.key === 'Escape' && ui.imageModal.dataset.open === 'true'){
+            closeImageModal();
+          }
+        });
+      }
+
+      function openImageModal(src, alt){
+        if(!ui.imageModal || !ui.imageModalImg){ return; }
+        ui.imageModalImg.src = src;
+        ui.imageModalImg.alt = alt || '';
+        ui.imageModal.dataset.open = 'true';
+        ui.imageModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeImageModal(){
+        if(!ui.imageModal || !ui.imageModalImg){ return; }
+        ui.imageModal.dataset.open = 'false';
+        ui.imageModal.setAttribute('aria-hidden', 'true');
+        ui.imageModalImg.removeAttribute('src');
+        document.body.classList.remove('modal-open');
+      }
+
+      function applyTextSize(size, persist){
+        document.documentElement.setAttribute('data-text-size', size);
+        updateTextToggle(size);
+        if(persist){ setStoredTextSize(size); }
+      }
+
+      function updateTextToggle(size){
+        if(!textToggle){ return; }
+        const isLarge = size === 'large';
+        textToggle.textContent = isLarge ? 'Small text' : 'Large text';
+        textToggle.setAttribute('aria-label', isLarge ? 'Switch to small text' : 'Switch to large text');
+      }
+
+      function getStoredTextSize(){
+        try{
+          return localStorage.getItem(TEXT_KEY);
+        }catch(err){
+          return null;
+        }
+      }
+
+      function setStoredTextSize(size){
+        try{
+          localStorage.setItem(TEXT_KEY, size);
+        }catch(err){
+          // Ignore storage failures.
+        }
+      }
+
+
+      function applyTheme(theme, persist){
+        document.documentElement.setAttribute('data-theme', theme);
+        updateThemeToggle(theme);
+        if(persist){ setStoredTheme(theme); }
+      }
+
+      function updateThemeToggle(theme){
+        if(!themeToggle){ return; }
+        const isDark = theme === 'dark';
+        themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+
+      function getStoredTheme(){
+        try{
+          return localStorage.getItem(THEME_KEY);
+        }catch(err){
+          return null;
+        }
+      }
+
+      function setStoredTheme(theme){
+        try{
+          localStorage.setItem(THEME_KEY, theme);
+        }catch(err){
+          // Ignore storage failures (private mode or blocked storage).
+        }
+      }
+
+      async function init(){
+        initImageModal();
+        try{
+          const config = await loadConfig();
+          state.sections = config.sections || [];
+          state.configUrl = new URL(config.__source || 'sections.json', window.location.href);
+          ui.reportTitle.textContent = config.title || 'Interaktiver Report';
+          if(config.subtitle){ ui.reportSubtitle.textContent = config.subtitle; }
+          renderNav();
+          const initialId = pickInitial(state.sections);
+          if(initialId){ await selectSection(initialId); }
+        }catch(err){
+          console.error(err);
+          ui.markdown.innerHTML = '<p class="error">sections.json konnte nicht geladen werden. Liegt die Datei neben dieser index.html?</p>';
+        }
+      }
+
+      async function loadConfig(){
+        const candidates = ['./sections.json','../sections.json'];
+        for(const path of candidates){
+          try{
+            const res = await fetch(path);
+            if(res.ok){
+              const json = await res.json();
+              json.__source = res.url || path;
+              return json;
+            }
+          }catch(err){
+            console.warn('Config-Probe fehlgeschlagen für', path, err);
           }
         }
-        attempt();
-      });
-    }
+        throw new Error('Keine sections.json gefunden (probiert ./ und ../)');
+      }
 
-    (function () {
-      var toggle = document.getElementById("matrixToggle");
-      var frame = document.getElementById("matrixFrame");
-      if (!toggle || !frame) return;
+      function pickInitial(list){
+        const fromHash = decodeURIComponent(window.location.hash.replace('#','')).trim();
+        if(fromHash && list.some(s => s.id === fromHash)){ return fromHash; }
+        return list[0]?.id;
+      }
 
-      toggle.addEventListener("click", function (event) {
-        var button = event.target;
-        if (!button || !button.dataset || !button.dataset.src) return;
-        var src = button.dataset.src;
-        if (frame.getAttribute("src") !== src) {
-          frame.setAttribute("src", src);
+      function handleHashChange(){
+        const target = decodeURIComponent(window.location.hash.replace('#','')).trim();
+        if(!target || target === state.activeId){ return; }
+        if(state.sections.some(s => s.id === target)){
+          selectSection(target);
         }
-        var buttons = toggle.querySelectorAll("button");
-        for (var i = 0; i < buttons.length; i++) {
-          buttons[i].classList.remove("active");
+      }
+
+      async function selectSection(id){
+        const section = state.sections.find(s => s.id === id);
+        if(!section){ return; }
+        state.activeId = id;
+        updateNav(id);
+        window.location.hash = encodeURIComponent(id);
+        renderPdf(section);
+        renderAssets(section);
+        await renderTabs(section);
+        await renderFlughafenPanel(section);
+        await renderFreizeitPanel(section);
+        await renderMarkdown(section);
+        await renderKnotenDoc(section);
+        renderDownloads(section);
+        renderHelp(section);
+      }
+
+      function updateNav(activeId){
+        ui.sectionList.querySelectorAll('.section-pill').forEach(btn => {
+          btn.dataset.active = btn.dataset.sectionId === activeId ? 'true' : 'false';
+        });
+        if(ui.sectionSelect){
+          ui.sectionSelect.value = activeId || '';
         }
-        button.classList.add("active");
-      });
+      }
+
+      function renderNav(){
+        ui.sectionList.innerHTML = '';
+        const label = document.createElement('label');
+        label.className = 'section-select';
+        const labelText = document.createElement('span');
+        labelText.textContent = 'Kapitel auswählen';
+        const select = document.createElement('select');
+        select.setAttribute('aria-label', 'Kapitel auswählen');
+        select.id = 'section-select';
+        select.name = 'section-select';
+        select.addEventListener('change', (event) => {
+          const value = event.target.value;
+          if(value){ selectSection(value); }
+        });
+        label.appendChild(labelText);
+        label.appendChild(select);
+        ui.sectionList.appendChild(label);
+        ui.sectionSelect = select;
+
+        state.sections.forEach((section, idx) => {
+          const option = document.createElement('option');
+          option.value = section.id;
+          option.textContent = section.title || section.id;
+          select.appendChild(option);
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'section-pill';
+          btn.dataset.sectionId = section.id;
+          btn.innerHTML = '<span class="pill-index">'+String(idx+1).padStart(2,'0')+'</span><span class="pill-label">'+(section.title || section.id)+'</span>';
+          btn.addEventListener('click', () => selectSection(section.id));
+          ui.sectionList.appendChild(btn);
+        });
+        const initialId = state.activeId || state.sections[0]?.id;
+        if(initialId){ select.value = initialId; }
+      }
+
+      function slugify(text){
+        return (text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function renderToc(markdownRoot){
+        if(ui.toc){
+          ui.toc.remove();
+          ui.toc = null;
+        }
+        const existingTitle = markdownRoot.previousElementSibling;
+        if(existingTitle && existingTitle.classList && existingTitle.classList.contains('report-title')){
+          existingTitle.remove();
+        }
+
+        if(state.activeId === 'schluesselergebnisse'){
+          const reportTitle = document.createElement('h1');
+          reportTitle.className = 'report-title';
+          reportTitle.dataset.ignoreToc = 'true';
+          reportTitle.textContent = 'Abschlussreport';
+          markdownRoot.insertAdjacentElement('beforebegin', reportTitle);
+        }
+
+        const headings = Array.from(markdownRoot.querySelectorAll('h1, h2'));
+        if(!headings.length){ return; }
+        const nav = document.createElement('nav');
+        nav.className = 'toc';
+        nav.setAttribute('aria-label', 'Inhaltsverzeichnis');
+        const header = document.createElement('button');
+        header.className = 'toc-title';
+        header.type = 'button';
+        header.setAttribute('aria-expanded', 'true');
+        header.setAttribute('aria-controls', 'toc-list');
+        header.textContent = 'Inhalt';
+        nav.appendChild(header);
+        const list = document.createElement('ul');
+        list.className = 'toc-list';
+        list.id = 'toc-list';
+        const usedIds = new Set();
+        headings.forEach((heading) => {
+          if(heading.dataset.ignoreToc === 'true' || heading.classList.contains('report-title')){ return; }
+          const level = heading.tagName === 'H1' ? 1 : 2;
+          let id = heading.id || slugify(heading.textContent);
+          if(!id){ return; }
+          let unique = id;
+          let counter = 2;
+          while(usedIds.has(unique) || document.getElementById(unique)){
+            unique = id + '-' + counter;
+            counter += 1;
+          }
+          usedIds.add(unique);
+          heading.id = unique;
+          const item = document.createElement('li');
+          item.className = level === 1 ? 'toc-item' : 'toc-item toc-item--sub';
+          const link = document.createElement('a');
+          link.href = '#' + encodeURIComponent(unique);
+          link.textContent = heading.textContent;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+        nav.appendChild(list);
+        header.addEventListener('click', () => {
+          const expanded = header.getAttribute('aria-expanded') === 'true';
+          header.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          list.hidden = expanded;
+        });
+        markdownRoot.insertAdjacentElement('beforebegin', nav);
+        ui.toc = nav;
+      }
+
+      async function renderMarkdown(section){
+        ui.markdown.innerHTML = '<p class="muted">Lade Markdown…</p>';
+        if(!section.markdown){
+          ui.markdown.innerHTML = '<p class="muted">Kein Markdown hinterlegt. Trage den Pfad in der sections.json ein.</p>';
+          return;
+        }
+        try{
+          const url = resolve(section.markdown);
+          const res = await fetch(url);
+          if(!res.ok){ throw new Error(res.status + ' ' + res.statusText); }
+          const text = await res.text();
+          const raw = md.render(text);
+          ui.markdown.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
+          wrapTables(ui.markdown);
+          if(section.id === 'schluesselergebnisse'){
+            renderToc(ui.markdown);
+          }else if(ui.toc){
+            ui.toc.remove();
+            ui.toc = null;
+          }
+        }catch(err){
+          ui.markdown.innerHTML = '<p class="error">Markdown konnte nicht geladen werden: '+err.message+'</p>';
+        }
+      }
+
+      function wrapTables(container){
+        if(!container){ return; }
+        container.querySelectorAll('table').forEach((table) => {
+          if(table.closest('.table-wrap')){ return; }
+          const wrap = document.createElement('div');
+          wrap.className = 'table-wrap';
+          table.parentNode.insertBefore(wrap, table);
+          wrap.appendChild(table);
+        });
+      }
+
+      function renderDownloads(section){
+        ui.downloads.innerHTML = '';
+        const downloads = section.downloads || [];
+        if(!downloads.length){
+          ui.downloadsPanel.hidden = true;
+          return;
+        }
+        if(section.id === 'ist-analysis'){
+          const note = document.createElement('p');
+          note.className = 'muted downloads-note';
+          note.textContent = 'Gemeinde- und Regionsdaten sind in der Master Daten Tabelle hinterlegt.';
+          ui.downloads.appendChild(note);
+        }
+        if(section.id === 'schluesselergebnisse' && ui.main){
+          ui.main.appendChild(ui.downloadsPanel);
+        }
+        ui.downloadsPanel.hidden = false;
+        downloads.forEach(item => {
+          if(!item || !item.href){ return; }
+          const link = document.createElement('a');
+          link.className = 'download-chip';
+          link.href = resolve(item.href);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = item.label || item.href;
+          ui.downloads.appendChild(link);
+        });
+      }
+
+      async function renderFlughafenPanel(section){
+        const panel = ui.flughafenPanel;
+        if(!panel){ return; }
+        if(section.id !== 'verkehrshotspots' || !section.flughafenPanel){
+          panel.hidden = true;
+          ui.flughafenMarkdown.innerHTML = '';
+          ui.flughafenPdfs.innerHTML = '';
+          return;
+        }
+        panel.hidden = false;
+        ui.flughafenHeading.textContent = section.flughafenPanel.title || 'Flughafen Zürich';
+
+        if(section.flughafenPanel.markdown){
+          ui.flughafenMarkdown.innerHTML = '<p class="muted">Lade Markdown…</p>';
+          try{
+            const res = await fetch(resolve(section.flughafenPanel.markdown));
+            if(!res.ok){ throw new Error(res.status + ' ' + res.statusText); }
+            const text = await res.text();
+            const raw = md.render(text);
+            ui.flughafenMarkdown.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
+          }catch(err){
+            ui.flughafenMarkdown.innerHTML = '<p class="error">Markdown konnte nicht geladen werden: '+err.message+'</p>';
+          }
+        }else{
+          ui.flughafenMarkdown.innerHTML = '';
+        }
+
+        ui.flughafenPdfs.innerHTML = '';
+        const pdfs = section.flughafenPanel.pdfs || [];
+        if(!pdfs.length){
+          ui.flughafenPdfs.innerHTML = '<p class="muted">Keine PDFs hinterlegt.</p>';
+          return;
+        }
+        pdfs.forEach((pdf, idx) => {
+          if(pdf && pdf.src){
+            const iframe = document.createElement('iframe');
+            iframe.className = 'embed';
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'no-referrer';
+            iframe.src = resolve(pdf.src);
+            iframe.title = pdf.title || ('PDF ' + (idx + 1));
+            iframe.style.height = '40vh';
+            ui.flughafenPdfs.appendChild(iframe);
+          }else{
+            const placeholder = document.createElement('div');
+            placeholder.className = 'pdf-placeholder';
+            placeholder.textContent = (pdf && pdf.title ? pdf.title + ' – ' : '') + 'PDF folgt';
+            ui.flughafenPdfs.appendChild(placeholder);
+          }
+        });
+      }
+
+      async function renderFreizeitPanel(section){
+        const panel = ui.freizeitPanel;
+        if(!panel){ return; }
+        if(section.id !== 'verkehrshotspots' || !section.freizeitPanel){
+          panel.hidden = true;
+          ui.freizeitMarkdown.innerHTML = '';
+          ui.freizeitPdfs.innerHTML = '';
+          return;
+        }
+        panel.hidden = false;
+        ui.freizeitHeading.textContent = section.freizeitPanel.title || 'Freizeithotspots';
+
+        if(section.freizeitPanel.markdown){
+          ui.freizeitMarkdown.innerHTML = '<p class="muted">Lade Markdown…</p>';
+          try{
+            const res = await fetch(resolve(section.freizeitPanel.markdown));
+            if(!res.ok){ throw new Error(res.status + ' ' + res.statusText); }
+            const text = await res.text();
+            const raw = md.render(text);
+            ui.freizeitMarkdown.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
+          }catch(err){
+            ui.freizeitMarkdown.innerHTML = '<p class="error">Markdown konnte nicht geladen werden: '+err.message+'</p>';
+          }
+        }else{
+          ui.freizeitMarkdown.innerHTML = '';
+        }
+
+        ui.freizeitPdfs.innerHTML = '';
+        const pdfs = section.freizeitPanel.pdfs || [];
+        if(!pdfs.length){
+          ui.freizeitPdfs.innerHTML = '<p class="muted">Keine PDFs hinterlegt.</p>';
+          return;
+        }
+        pdfs.forEach((pdf, idx) => {
+          if(pdf && pdf.src){
+            const iframe = document.createElement('iframe');
+            iframe.className = 'embed';
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'no-referrer';
+            iframe.src = resolve(pdf.src);
+            iframe.title = pdf.title || ('PDF ' + (idx + 1));
+            iframe.style.height = '40vh';
+            ui.freizeitPdfs.appendChild(iframe);
+          }else{
+            const placeholder = document.createElement('div');
+            placeholder.className = 'pdf-placeholder';
+            placeholder.textContent = (pdf && pdf.title ? pdf.title + ' – ' : '') + 'PDF folgt';
+            ui.freizeitPdfs.appendChild(placeholder);
+          }
+        });
+      }
+
+      async function renderKnotenDoc(section){
+        if(section.id !== 'verkehrsknoten' || !section.knotenDocMarkdown){
+          ui.knotenDocPanel.hidden = true;
+          ui.knotenDoc.innerHTML = '';
+          return;
+        }
+        ui.knotenDocPanel.hidden = false;
+        ui.knotenDoc.innerHTML = '<p class="muted">Lade Dokumentation…</p>';
+        try{
+          const url = resolve(section.knotenDocMarkdown);
+          const res = await fetch(url);
+          if(!res.ok){ throw new Error(res.status + ' ' + res.statusText); }
+          const text = await res.text();
+          const raw = md.render(text);
+          ui.knotenDoc.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
+        }catch(err){
+          ui.knotenDoc.innerHTML = '<p class="error">Dokumentation konnte nicht geladen werden: '+err.message+'</p>';
+        }
+      }
+
+      function renderHelp(section){
+        const help = section.helpEmbed;
+        if(!help || !help.src){
+          ui.helpPanel.hidden = true;
+          ui.helpEmbed.innerHTML = '';
+          return;
+        }
+        ui.helpPanel.hidden = false;
+        ui.helpHeading.hidden = true;
+        ui.helpEmbed.innerHTML = '';
+        const link = document.createElement('a');
+        link.className = 'btn';
+        link.href = resolve(help.src);
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Hotspot Dashboard Hilfe (EN) öffnen';
+        ui.helpEmbed.appendChild(link);
+      }
+
+      function renderAssets(section){
+        ui.assets.innerHTML = '';
+        const assets = section.assets || [];
+        if(!assets.length){
+          ui.assetsPanel.hidden = true;
+          ui.assetsFilter.hidden = true;
+          clearKnotenPanels();
+          return;
+        }
+        ui.assetsPanel.hidden = false;
+        if(section.id === 'verkehrsknoten'){
+          ui.assets.classList.add('single-column');
+          ui.assetsPanel.hidden = true;
+          renderVerkehrsknotenSections(assets);
+          return;
+        }
+        ui.assets.classList.remove('single-column');
+        ui.assetsFilter.hidden = true;
+        clearKnotenPanels();
+        assets.forEach(asset => {
+          const card = buildAssetCard({ ...asset, autoload: true });
+          if(section.id === 'ist-analysis' && ((asset.title || '').includes('Modal Split') || asset.fullWidth)){
+            card.classList.add('full-width');
+          }
+          ui.assets.appendChild(card);
+        });
+      }
+
+      function labelBeforeLastDash(value){
+        const text = (value || '').trim();
+        if(!text){ return ''; }
+        const separators = [' – ', ' - '];
+        let idx = -1;
+        let sepLen = 0;
+        separators.forEach(sep => {
+          const pos = text.lastIndexOf(sep);
+          if(pos > idx){
+            idx = pos;
+            sepLen = sep.length;
+          }
+        });
+        if(idx === -1){ return text; }
+        return text.slice(0, idx).trim() || text;
+      }
+      function labelAfterLastDash(value){
+        const text = (value || '').trim();
+        if(!text){ return ''; }
+        const separators = [' – ', ' - '];
+        let idx = -1;
+        let sepLen = 0;
+        separators.forEach(sep => {
+          const pos = text.lastIndexOf(sep);
+          if(pos > idx){
+            idx = pos;
+            sepLen = sep.length;
+          }
+        });
+        if(idx === -1){ return text; }
+        return text.slice(idx + sepLen).trim() || text;
+      }
+
+      function renderVerkehrsknotenSections(assets){
+        const grouped = groupKnotenAssets(assets);
+        ui.assetsFilter.hidden = true;
+        ui.assetsFilter.innerHTML = '';
+        const groups = [];
+        groups.push({key: 'overview', label: 'Übersicht', items: grouped.overview});
+        grouped.groups.forEach((items, key) => {
+          groups.push({key, label: grouped.labels.get(key), items});
+        });
+
+        clearKnotenPanels();
+        const main = ui.assetsPanel.parentElement;
+        const anchor = ui.tabsWrapper || ui.downloadsPanel || null;
+        groups.forEach(group => {
+          const panel = document.createElement('section');
+          panel.className = 'panel';
+          panel.dataset.role = 'knoten-panel';
+          const head = document.createElement('div');
+          head.className = 'panel-head';
+          const title = document.createElement('h3');
+          title.className = 'knoten-panel-title';
+          title.textContent = group.label || group.key;
+
+          head.appendChild(title);
+          panel.appendChild(head);
+
+          const body = document.createElement('div');
+          body.className = 'knoten-panel-body';
+
+          const selectLabel = document.createElement('label');
+          selectLabel.className = 'tab-select';
+          const selectText = document.createElement('span');
+          selectText.textContent = 'Ansicht wählen';
+          const select = document.createElement('select');
+          select.setAttribute('aria-label', 'Ansicht wählen');
+          selectLabel.appendChild(selectText);
+          selectLabel.appendChild(select);
+
+          head.appendChild(selectLabel);
+
+          const cardArea = document.createElement('div');
+          body.appendChild(cardArea);
+          panel.appendChild(body);
+          if(anchor){
+            main.insertBefore(panel, anchor);
+          }else{
+            main.appendChild(panel);
+          }
+
+          (group.items || []).forEach((asset, idx) => {
+            const option = document.createElement('option');
+            option.value = String(idx);
+            option.textContent = labelAfterLastDash(asset.title) || ('Asset ' + (idx + 1));
+            select.appendChild(option);
+          });
+
+          function renderSelected(index, autoload){
+            cardArea.innerHTML = '';
+            const item = (group.items || [])[index];
+            if(item){
+              cardArea.appendChild(buildAssetCard(item, {
+                autoload: Boolean(autoload),
+                hideLoad: true,
+                titleOverride: labelAfterLastDash(item.title)
+              }));
+            }
+          }
+
+          select.addEventListener('change', () => renderSelected(select.selectedIndex, true));
+          renderSelected(0, true);
+        });
+      }
+
+      function groupKnotenAssets(assets){
+        const groups = new Map();
+        const labels = new Map();
+        const overview = [];
+        assets.forEach(asset => {
+          const title = asset?.title || '';
+          const src = asset?.src || '';
+          const match = title.match(/^(\d{2})\s+/) || src.match(/\/(\d{2})_/);
+          if(match){
+            const key = match[1];
+            if(!groups.has(key)){ groups.set(key, []); }
+            groups.get(key).push(asset);
+            if(!labels.has(key)){
+              const base = title.split(' – ')[0];
+              labels.set(key, base || ('Sektion ' + key));
+            }
+          }else{
+            overview.push(asset);
+          }
+        });
+        const sorted = new Map([...groups.entries()].sort((a, b) => Number(a[0]) - Number(b[0])));
+        const sortedLabels = new Map([...labels.entries()].sort((a, b) => Number(a[0]) - Number(b[0])));
+        return {overview, groups: sorted, labels: sortedLabels};
+      }
+
+      function buildAssetCard(asset, options = {}){
+        const card = document.createElement('article');
+        card.className = 'asset-card';
+        const head = document.createElement('div');
+        head.className = 'asset-head';
+        const titleBlock = document.createElement('div');
+        const title = document.createElement('h4');
+        title.textContent = options.titleOverride || labelBeforeLastDash(asset.title) || 'Embed';
+        titleBlock.appendChild(title);
+        head.appendChild(titleBlock);
+        card.appendChild(head);
+
+        if(asset.description){
+          const desc = document.createElement('p');
+          desc.className = 'asset-desc';
+          desc.textContent = asset.description;
+          card.appendChild(desc);
+        }
+
+        const placeholder = document.createElement('div');
+        placeholder.className = 'asset-placeholder';
+        placeholder.textContent = 'Noch nicht geladen';
+        card.appendChild(placeholder);
+
+        const actions = document.createElement('div');
+        actions.className = 'asset-actions';
+
+        if(asset.src){
+          const open = document.createElement('a');
+          open.className = 'btn secondary';
+          open.href = resolve(asset.src);
+          open.target = '_blank';
+          open.rel = 'noopener noreferrer';
+          open.textContent = 'Im neuen Tab öffnen';
+          actions.appendChild(open);
+
+          const download = document.createElement('a');
+          download.className = 'btn secondary';
+          download.href = resolve(asset.src);
+          download.download = '';
+          download.textContent = 'Download';
+          actions.appendChild(download);
+
+          if(asset.autoload || options.autoload){
+            setTimeout(() => loadFrame(card, placeholder, null, asset), 50);
+          }
+        }else{
+          const note = document.createElement('span');
+          note.className = 'muted';
+          note.textContent = 'Kein src angegeben.';
+          actions.appendChild(note);
+        }
+
+        card.appendChild(actions);
+        return card;
+      }
+
+      function loadFrame(card, placeholder, btn, asset){
+        if(card.dataset.loaded === 'true'){ return; }
+        const iframe = document.createElement('iframe');
+        iframe.className = 'embed';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer';
+        iframe.src = resolve(asset.src);
+        iframe.title = asset.title || 'Embed';
+        iframe.height = (asset.height || guessHeight(asset.type || '')) + 'px';
+        placeholder.replaceWith(iframe);
+        card.dataset.loaded = 'true';
+      }
+
+      function clearKnotenPanels(){
+        document.querySelectorAll('[data-role="knoten-panel"]').forEach(panel => panel.remove());
+      }
+
+      function guessHeight(type){
+        const t = (type || '').toLowerCase();
+        if(t.includes('app')) return 820;
+        if(t.includes('map')) return 600;
+        if(t.includes('chart')) return 560;
+        return 520;
+      }
+
+      function resolve(path){
+        if(!path){ return ''; }
+        try{
+          const base = state.configUrl || window.location.href;
+          return new URL(path, base).toString();
+        }catch(err){
+          return path;
+        }
+      }
+
+      async function renderTabs(section){
+        const wrapper = ui.tabsWrapper;
+        ui.tabsSelect = null;
+        if(!section.tabs){
+          wrapper.style.display = 'none';
+          ui.tabsNav.innerHTML = '';
+          ui.tabsContent.innerHTML = '';
+          return;
+        }
+        wrapper.style.display = 'block';
+        ui.tabsNav.innerHTML = '';
+        ui.tabsContent.innerHTML = '';
+
+        const tabsData = await loadTabsData(section.tabs);
+        const grouped = tabsData && Array.isArray(tabsData.groups) ? tabsData.groups : null;
+        const heading = section.tabs.title || tabsData?.title || 'Tabs';
+        ui.tabsHeading.textContent = heading;
+
+        if(Array.isArray(tabsData) && tabsData.length){
+          renderFlatTabs(tabsData, section.tabs.height);
+          return;
+        }
+        if(grouped && grouped.length){
+          renderGroupedTabs(grouped, section.tabs.height);
+          return;
+        }
+
+        ui.tabsContent.innerHTML = '<p class="muted">Keine Tabs hinterlegt.</p>';
+      }
+
+      function renderFlatTabs(tabsData, defaultHeight){
+        const label = document.createElement('label');
+        label.className = 'tab-select';
+        const labelText = document.createElement('span');
+        labelText.textContent = 'Ansicht auswählen';
+        const select = document.createElement('select');
+        select.setAttribute('aria-label', 'Ansicht auswählen');
+        select.id = 'tab-select';
+        select.name = 'tab-select';
+        select.addEventListener('change', (event) => {
+          activateTab(Number(event.target.value), tabsData, defaultHeight);
+        });
+        label.appendChild(labelText);
+        label.appendChild(select);
+        ui.tabsNav.appendChild(label);
+        ui.tabsSelect = select;
+
+        tabsData.forEach((tab, idx) => {
+          const option = document.createElement('option');
+          option.value = String(idx);
+          option.textContent = tab.title || 'Tab ' + (idx + 1);
+          select.appendChild(option);
+
+          const panel = document.createElement('div');
+          panel.className = 'tab-panel';
+          panel.dataset.index = idx;
+          panel.innerHTML = '<p class="muted">Noch nicht geladen.</p>';
+          ui.tabsContent.appendChild(panel);
+        });
+
+        activateTab(0, tabsData, defaultHeight);
+      }
+
+      function renderGroupedTabs(groups, defaultHeight){
+        const groupLabel = document.createElement('label');
+        groupLabel.className = 'tab-select';
+        const groupText = document.createElement('span');
+        groupText.textContent = 'Ansicht';
+        const groupSelect = document.createElement('select');
+        groupSelect.setAttribute('aria-label', 'Ansicht');
+        groupSelect.id = 'tab-group-select';
+        groupSelect.name = 'tab-group-select';
+        groupLabel.appendChild(groupText);
+        groupLabel.appendChild(groupSelect);
+
+        const itemLabel = document.createElement('label');
+        itemLabel.className = 'tab-select';
+        const itemText = document.createElement('span');
+        itemText.textContent = 'Auswählen';
+        const itemSelect = document.createElement('select');
+        itemSelect.setAttribute('aria-label', 'Auswählen');
+        itemSelect.id = 'tab-item-select';
+        itemSelect.name = 'tab-item-select';
+        itemLabel.appendChild(itemText);
+        itemLabel.appendChild(itemSelect);
+
+        ui.tabsNav.appendChild(itemLabel);
+        ui.tabsNav.appendChild(groupLabel);
+        ui.tabsSelect = itemSelect;
+
+        const panel = document.createElement('div');
+        panel.className = 'tab-panel';
+        panel.dataset.index = 'grouped';
+        panel.dataset.active = 'true';
+        ui.tabsContent.appendChild(panel);
+
+        groups.forEach((group, idx) => {
+          const opt = document.createElement('option');
+          opt.value = String(idx);
+          opt.textContent = group.label || ('Gruppe ' + (idx + 1));
+          groupSelect.appendChild(opt);
+        });
+
+        function populateItems(groupIdx){
+          itemSelect.innerHTML = '';
+          const items = groups[groupIdx]?.items || [];
+          if(!items.length){
+            const empty = document.createElement('option');
+            empty.value = '';
+            empty.textContent = 'Keine Einträge';
+            itemSelect.appendChild(empty);
+            panel.innerHTML = '<p class="muted">Keine Einträge in dieser Kategorie.</p>';
+            return;
+          }
+          items.forEach((item, idx) => {
+            const opt = document.createElement('option');
+            opt.value = String(idx);
+            opt.textContent = item.title || ('Element ' + (idx + 1));
+            itemSelect.appendChild(opt);
+          });
+        }
+
+        function activate(groupIdx, idx){
+          const group = groups[groupIdx];
+          const item = group?.items?.[idx];
+          if(!item){
+            panel.innerHTML = '<p class="muted">Keine Ansicht ausgewählt.</p>';
+            return;
+          }
+          panel.innerHTML = '';
+          const iframe = document.createElement('iframe');
+          iframe.className = 'embed';
+          iframe.loading = 'lazy';
+          iframe.referrerPolicy = 'no-referrer';
+          iframe.src = resolve(item.src);
+          iframe.title = item.title || 'Tab';
+          iframe.height = (item.height || group?.height || defaultHeight || 640) + 'px';
+          panel.appendChild(iframe);
+        }
+
+        groupSelect.addEventListener('change', () => {
+          const currentGroup = Number(groupSelect.value || 0);
+          populateItems(currentGroup);
+          activate(currentGroup, Number(itemSelect.value || 0));
+        });
+        itemSelect.addEventListener('change', () => {
+          activate(Number(groupSelect.value || 0), Number(itemSelect.value || 0));
+        });
+
+        groupSelect.value = '0';
+        populateItems(0);
+        activate(0, Number(itemSelect.value || 0));
+      }
+
+      async function loadTabsData(tabsConfig){
+        if(Array.isArray(tabsConfig)){ return tabsConfig; }
+        if(tabsConfig && Array.isArray(tabsConfig.items)){ return tabsConfig.items; }
+        if(tabsConfig && Array.isArray(tabsConfig.groups)){ return {title: tabsConfig.title, groups: tabsConfig.groups}; }
+        if(tabsConfig && tabsConfig.source){
+          try{
+            const res = await fetch(resolve(tabsConfig.source));
+            if(res.ok){ return await res.json(); }
+          }catch(err){
+            console.warn('Tabs konnten nicht geladen werden', err);
+          }
+        }
+        return [];
+      }
+
+      function activateTab(idx, tabsData, defaultHeight){
+        if(ui.tabsSelect && Number(ui.tabsSelect.value) !== idx){
+          ui.tabsSelect.value = String(idx);
+        }
+        ui.tabsContent.querySelectorAll('.tab-panel').forEach(panel => {
+          const active = Number(panel.dataset.index) === idx;
+          panel.dataset.active = active ? 'true' : 'false';
+          if(active && panel.dataset.loaded !== 'true'){
+            const tab = tabsData[idx];
+            const iframe = document.createElement('iframe');
+            iframe.className = 'embed';
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'no-referrer';
+            iframe.src = resolve(tab.src);
+            iframe.title = tab.title || 'Tab';
+            iframe.height = (tab.height || defaultHeight || 640) + 'px';
+            panel.innerHTML = '';
+            panel.appendChild(iframe);
+            panel.dataset.loaded = 'true';
+          }
+        });
+      }
+
+      function renderPdf(section){
+        const panel = ui.pdfPanel;
+        const box = ui.pdfContainer;
+        const reportPanel = ui.reportPdfPanel;
+        const reportBox = ui.reportPdfContainer;
+        const downloads = section.downloads || [];
+        const pdf = downloads.find(d => d?.href && d.href.toLowerCase().endsWith('.pdf'));
+        if(!pdf){
+          panel.style.display = 'none';
+          box.innerHTML = '';
+          if(reportPanel){
+            reportPanel.style.display = 'none';
+            reportBox.innerHTML = '';
+          }
+          return;
+        }
+        if(section.id === 'schluesselergebnisse' && ui.main){
+          ui.main.appendChild(panel);
+          if(reportPanel){
+            panel.insertAdjacentElement('afterend', reportPanel);
+          }
+        }else if(ui.markdownPanel){
+          ui.markdownPanel.insertAdjacentElement('afterend', panel);
+          if(reportPanel){
+            panel.insertAdjacentElement('afterend', reportPanel);
+          }
+        }
+        panel.style.display = 'block';
+        if(ui.pdfHeading){
+          ui.pdfHeading.textContent = section.id === 'schluesselergebnisse'
+            ? 'Abschlusspräsentation'
+            : 'Präsentation / PDF';
+        }
+        const src = resolve(pdf.href);
+        const iframe = document.createElement('iframe');
+        iframe.className = 'embed';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer';
+        iframe.src = src;
+        iframe.title = pdf.label || 'PDF';
+        iframe.style.height = '40vh';
+        box.innerHTML = '';
+        box.appendChild(iframe);
+
+        if(reportPanel && reportBox){
+          if(section.id === 'schluesselergebnisse'){
+            reportPanel.style.display = 'block';
+            if(ui.reportPdfHeading){
+              ui.reportPdfHeading.textContent = 'Report (PDF Version)';
+            }
+            const reportIframe = document.createElement('iframe');
+            reportIframe.className = 'embed';
+            reportIframe.loading = 'lazy';
+            reportIframe.referrerPolicy = 'no-referrer';
+            reportIframe.src = resolve('Report/docs/Report.pdf');
+            reportIframe.title = 'Report (PDF Version)';
+            reportIframe.style.height = '60vh';
+            reportBox.innerHTML = '';
+            reportBox.appendChild(reportIframe);
+          }else{
+            reportPanel.style.display = 'none';
+            reportBox.innerHTML = '';
+          }
+        }
+      }
     })();
-
-    (function () {
-      var toggle = document.getElementById("barTreemapToggle");
-      var frame = document.getElementById("barTreemapFrame");
-      if (!toggle || !frame) return;
-
-      toggle.addEventListener("click", function (event) {
-        var button = event.target;
-        if (!button || !button.dataset || !button.dataset.src) return;
-        var src = button.dataset.src;
-        if (frame.getAttribute("src") !== src) {
-          frame.setAttribute("src", src);
-        }
-        var buttons = toggle.querySelectorAll("button");
-        for (var i = 0; i < buttons.length; i++) {
-          buttons[i].classList.remove("active");
-        }
-        button.classList.add("active");
-      });
-    })();
-
-    attachPlotlyTitleHider(document.getElementById("mapFrame"));
-    attachPlotlyTitleHider(document.getElementById("barTreemapFrame"));
-    attachPlotlyTitleHider(document.getElementById("matrixFrame"));
   </script>
 </body>
 </html>

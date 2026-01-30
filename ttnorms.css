@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "TT Norms Pro";
+  src:
+    url("./TTNorms®Pro/woff2/TT-Norms-Pro-Regular.woff2") format("woff2"),
+    url("./TTNorms®Pro/woff/TT-Norms-Pro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Norms Pro";
+  src:
+    url("./TTNorms®Pro/woff2/TT-Norms-Pro-Medium.woff2") format("woff2"),
+    url("./TTNorms®Pro/woff/TT-Norms-Pro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Norms Pro";
+  src:
+    url("./TTNorms®Pro/woff2/TT_Norms_Pro-DemiBold.woff2") format("woff2"),
+    url("./TTNorms®Pro/woff/TT_Norms_Pro-DemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Norms Pro";
+  src:
+    url("./TTNorms®Pro/woff2/TT_Norms_Pro-Bold.woff2") format("woff2"),
+    url("./TTNorms®Pro/woff/TT_Norms_Pro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: "TT Norms Pro", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body,
+.sans {
+  font-family: var(--font-sans);
+}
