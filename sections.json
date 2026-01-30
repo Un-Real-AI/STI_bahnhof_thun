@@ -1,169 +1,105 @@
 {
-  "title": "STI Mobilitätsreport – Interaktive",
-  "subtitle": "Korridor-Viewer (Stand 30.01.2026)",
+  "title": "Bahnhof Thun: Korridoranalyse",
+  "subtitle": "42hacks im Auftrag von STI Bus AG",
   "sections": [
     {
       "id": "intro",
-      "title": "Intro (Beispiel)",
-      "markdown": "content/intro.md",
+      "title": "Report",
+      "markdown": "report/Markdown/intro.md",
       "downloads": [],
       "assets": []
     },
     {
-      "id": "assets-demo",
-      "title": "Assets Demo (Beispiel)",
-      "markdown": "",
+      "id": "balkendiagramm-treemap",
+      "title": "Korridor Analyse",
+      "markdown": "korridor-analyse/Markdown/balkendiagramm.md",
       "assets": [
         {
-          "title": "Beispiel: Treemap Connector",
-          "src": "treemap_connectors_merged_sum_ov.html",
-          "type": "chart",
-          "height": 520,
-          "description": "Lokale HTML als Beispiel-Asset.",
-          "autoload": true
-        }
-      ],
-      "tabs": {
-        "title": "Tab Beispiel",
-        "items": [
-          {
-            "title": "Korridorkarte (Sample)",
-            "src": "corridor_map.html",
-            "height": 520
-          },
-          {
-            "title": "Treemap (Sample)",
-            "src": "treemap_corridor_waypoint_merged_sum_ov.html",
-            "height": 520
-          }
-        ],
-        "height": 520
-      },
-      "downloads": []
-    },
-    {
-      "id": "karte",
-      "title": "Karte",
-      "markdown": "content/karte.md",
-      "assets": [
-        {
-          "title": "Korridorkarte - Gesamtuebersicht",
-          "src": "corridor_map.html",
+          "title": "ÖV-Korridore: Karte",
+          "src": "korridor-analyse/Htmls/corridor_map.html",
           "type": "map",
           "height": 700,
-          "description": "Interaktive Karte aus der bestehenden HTML-Ausgabe.",
           "autoload": true
         }
       ],
-      "downloads": []
-    },
-    {
-      "id": "balkendiagramm-treemap",
-      "title": "Balkendiagramm + Treemap",
-      "markdown": "content/balkendiagramm.md",
       "tabs": {
-        "title": "Auswahl",
+        "title": "ÖV-Korridore: Nachfrage und Haltestellen",
         "items": [
           {
-            "title": "Balkendiagramm (Korridore)",
-            "src": "bar_corridors_merged_sum_ov_nocategory.html",
+            "title": "Korridor Nachfrage: Balkendiagramm",
+            "src": "korridor-analyse/Htmls/bar_corridors_merged_sum_ov_nocategory.html",
             "height": 640
           },
           {
-            "title": "Treemap (Korridor/Wegpunkt)",
-            "src": "treemap_corridor_waypoint_merged_sum_ov.html",
+            "title": "Korridor Nachfrage: Korridor + Wegpunkt",
+            "src": "korridor-analyse/Htmls/treemap_corridor_waypoint_merged_sum_ov.html",
             "height": 640
           }
         ],
         "height": 640
       },
-      "assets": [
-        {
-          "title": "Balkendiagramm - Direktansicht",
-          "src": "bar_corridors_merged_sum_ov_nocategory.html",
-          "type": "chart",
-          "height": 520,
-          "description": "Direkte Einbettung des Balkendiagramms.",
-          "autoload": true
-        },
-        {
-          "title": "Treemap - Direktansicht",
-          "src": "treemap_corridor_waypoint_merged_sum_ov.html",
-          "type": "chart",
-          "height": 520,
-          "description": "Direkte Einbettung der Treemap.",
-          "autoload": true
-        }
-      ],
-      "downloads": []
-    },
-    {
-      "id": "matrix",
-      "title": "Matrix",
-      "markdown": "content/matrix.md",
-      "tabs": {
-        "title": "Matrix-Varianten",
+      "tabsSecondary": {
+        "title": "ÖV-Korridore: Umsteigebeziehungen",
         "items": [
           {
             "title": "Alle Korridore (symmetrisch)",
-            "src": "corridor_matrix_all_ov_symmetric.html",
+            "src": "umsteigebeziehungen/Htmls/corridor_matrix_all_ov_symmetric.html",
             "height": 700
           },
           {
             "title": "Bus <-> Bus (symmetrisch)",
-            "src": "corridor_matrix_bus_to_bus_ov_symmetric.html",
+            "src": "umsteigebeziehungen/Htmls/corridor_matrix_bus_to_bus_ov_symmetric.html",
             "height": 700
           },
           {
             "title": "Bus <-> Zug (symmetrisch)",
-            "src": "corridor_matrix_bus_train_ov_symmetric.html",
+            "src": "umsteigebeziehungen/Htmls/corridor_matrix_bus_train_ov_symmetric.html",
             "height": 700
           }
         ],
         "height": 700
       },
-      "assets": [],
       "downloads": []
     },
     {
       "id": "weitere-links",
-      "title": "Weitere Links",
-      "markdown": "content/weitere-links.md",
+      "title": "Linien Analyse (Beta)",
+      "markdown": "linien-analyse-beta/Markdown/weitere-links.md",
       "assets": [
         {
           "title": "Connector-Treemap",
-          "src": "treemap_connectors_merged_sum_ov.html",
+          "src": "linien-analyse-beta/Htmls/treemap_connectors_merged_sum_ov.html",
           "type": "chart",
           "height": 520,
           "autoload": true
         },
         {
           "title": "Haltestellen nach Connector (Treemap)",
-          "src": "treemap_stops_by_connector_merged_sum_ov.html",
+          "src": "linien-analyse-beta/Htmls/treemap_stops_by_connector_merged_sum_ov.html",
           "type": "chart",
           "height": 520,
           "autoload": true
         },
         {
           "title": "Wegpunkt-Balkendiagramm",
-          "src": "bar_waypoints_merged_sum_ov_nocategory.html",
+          "src": "linien-analyse-beta/Htmls/bar_waypoints_merged_sum_ov_nocategory.html",
           "type": "chart",
           "height": 520,
           "autoload": true
         },
         {
           "title": "Wegpunkt-Matrix (Top-30)",
-          "src": "waypoint_matrix_top30_ov_symmetric.html",
+          "src": "linien-analyse-beta/Htmls/waypoint_matrix_top30_ov_symmetric.html",
           "type": "chart",
           "height": 520,
           "autoload": true
         }
       ],
       "downloads": [
-        { "label": "Connector-Treemap (neuer Tab)", "href": "treemap_connectors_merged_sum_ov.html" },
-        { "label": "Haltestellen nach Connector", "href": "treemap_stops_by_connector_merged_sum_ov.html" },
-        { "label": "Wegpunkt-Balkendiagramm", "href": "bar_waypoints_merged_sum_ov_nocategory.html" },
-        { "label": "Wegpunkt-Matrix (Top-30)", "href": "waypoint_matrix_top30_ov_symmetric.html" }
+        { "label": "Connector-Treemap (neuer Tab)", "href": "linien-analyse-beta/Htmls/treemap_connectors_merged_sum_ov.html" },
+        { "label": "Haltestellen nach Connector", "href": "linien-analyse-beta/Htmls/treemap_stops_by_connector_merged_sum_ov.html" },
+        { "label": "Wegpunkt-Balkendiagramm", "href": "linien-analyse-beta/Htmls/bar_waypoints_merged_sum_ov_nocategory.html" },
+        { "label": "Wegpunkt-Matrix (Top-30)", "href": "linien-analyse-beta/Htmls/waypoint_matrix_top30_ov_symmetric.html" }
       ]
     }
   ]

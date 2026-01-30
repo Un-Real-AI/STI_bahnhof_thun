@@ -43,7 +43,7 @@
       font-display:swap;
     }
     :root{
-      --bg: #f5f7fb;
+      --bg: #f7f7f5;
       --panel: #ffffff;
       --card: #f8fafc;
       --text: #0f172a;
@@ -72,7 +72,7 @@
       --bg-grad-2: rgba(245,158,11,0.1);
       --danger: #b91c1c;
       --embed-bg: #f8fafc;
-      --code-bg: #f7f6f3;
+      --code-bg: #efefef;
       --code-border: rgba(15,23,42,0.12);
       --code-text: #1f2937;
       --code-inline-bg: rgba(15,23,42,0.04);
@@ -108,7 +108,7 @@
       --bg-grad-2: rgba(168,85,247,0.08);
       --danger: #fca5a5;
       --embed-bg: #0b1022;
-      --code-bg: rgba(15,23,42,0.7);
+      --code-bg: #1f2937;
       --code-border: rgba(148,163,184,0.25);
       --code-text: #e2e8f0;
       --code-inline-bg: rgba(148,163,184,0.12);
@@ -213,36 +213,36 @@
     .section-pill{
       width:100%;
       border:1px solid var(--border);
-      background:var(--surface-3);
+      background:var(--surface-2);
       color:var(--text);
-      border-radius:12px;
-      padding:12px 14px;
+      border-radius:999px;
+      padding:8px 12px;
       display:flex;
       align-items:center;
       gap:10px;
       cursor:pointer;
-      transition:all 0.18s ease;
+      transition:background-color 0.18s ease,border-color 0.18s ease,transform 0.18s ease;
       text-align:left;
     }
     .section-pill:hover{border-color:var(--accent-border);transform:translateY(-1px);}
     .section-pill[data-active="true"]{
-      background:linear-gradient(135deg,var(--accent-sheen-1),var(--accent-sheen-2));
+      background:var(--accent-soft);
       border-color:var(--accent-border-strong);
-      box-shadow:0 10px 30px var(--accent-shadow);
+      box-shadow:none;
     }
     html:not([data-theme="dark"]) .section-pill[data-active="true"]{
       background:var(--accent-soft);
-      box-shadow:none;
     }
     .pill-index{
-      width:36px;height:36px;border-radius:999px;
+      width:26px;height:26px;border-radius:999px;
       display:inline-flex;align-items:center;justify-content:center;
       background:var(--accent-soft);
       color:var(--text);
       font-weight:700;
       letter-spacing:0.04em;
+      font-size:0.75rem;
     }
-    .pill-label{font-weight:600;flex:1}
+    .pill-label{font-weight:600;flex:1;font-size:calc(0.95rem * var(--font-scale))}
     main{
       display:flex;
       flex-direction:column;
@@ -303,7 +303,7 @@
       transform:translateY(0);
     }
     #markdown pre,[data-role="knoten-doc"] pre{
-      background:var(--code-bg);
+      background:var(--code-bg) !important;
       border:1px solid var(--code-border);
       border-radius:10px;
       padding:12px 14px;
@@ -333,6 +333,13 @@
       color:inherit;
       padding:0 0.08em;
       border-radius:4px;
+    }
+    #markdown .callout,[data-role="knoten-doc"] .callout{
+      border:1px solid var(--border);
+      background:var(--surface-1);
+      border-radius:12px;
+      padding:12px 14px;
+      box-shadow:var(--shadow);
     }
     #markdown figure,[data-role="knoten-doc"] figure{margin:16px 18px}
     #markdown figure img,[data-role="knoten-doc"] figure img{max-width:calc(100% - 36px);margin:0 auto}
@@ -522,14 +529,16 @@
       border:1px solid var(--border);
       background:var(--surface-2);
       color:var(--text);
-      border-radius:10px;
-      padding:10px 12px;
+      border-radius:999px;
+      padding:6px 10px;
       cursor:pointer;
       transition:all 0.2s ease;
       font-weight:600;
+      font-size:calc(0.82rem * var(--font-scale));
     }
     .btn:hover{border-color:var(--accent-border-strong);transform:translateY(-1px)}
     .btn.secondary{background:transparent}
+    .tab-panel .asset-actions{margin-top:10px}
     iframe.embed{
       width:100%;
       border:1px solid var(--border);
@@ -558,19 +567,22 @@
     .tab-nav{
       display:flex;flex-wrap:wrap;gap:8px;
     }
-    .tab-select{display:flex;flex-direction:column;gap:6px}
-    .tab-select span{font-size:calc(0.85rem * var(--font-scale));color:var(--muted);letter-spacing:0.02em}
-    .tab-select select{
-      appearance:none;
+    .tab-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .tab-pill{
       border:1px solid var(--border);
-      background:var(--surface-3);
+      background:var(--surface-2);
       color:var(--text);
-      padding:10px 12px;
-      border-radius:10px;
-      font-weight:600;
+      border-radius:999px;
+      padding:6px 12px;
       cursor:pointer;
-      min-width:220px;
-      transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;
+      font-weight:600;
+      font-size:calc(0.85rem * var(--font-scale));
+      transition:background-color 0.2s ease,border-color 0.2s ease,transform 0.2s ease;
+    }
+    .tab-pill:hover{border-color:var(--accent-border);transform:translateY(-1px)}
+    .tab-pill[data-active="true"]{
+      background:var(--accent-soft);
+      border-color:var(--accent-border-strong);
     }
     .asset-filter{display:flex;align-items:center;gap:12px;margin-bottom:12px}
     .tab-panels{border:1px dashed var(--border);border-radius:12px;padding:12px;min-height:160px}
@@ -613,8 +625,8 @@
     @media(max-width:1080px){
       .layout{grid-template-columns:1fr}
       aside{position:static;flex-direction:row;flex-wrap:wrap}
-      .section-pill{width:auto;flex:1 1 180px;padding:8px 10px}
-      .pill-index{width:30px;height:30px;border-radius:999px;font-size:0.85rem}
+      .section-pill{width:auto;flex:1 1 180px;padding:6px 10px}
+      .pill-index{width:24px;height:24px;border-radius:999px;font-size:0.72rem}
     }
     @media(max-width:700px){
       body{padding:12px}
@@ -679,6 +691,14 @@
           </div>
           <div class="tab-nav" data-role="tabs-nav"></div>
           <div class="tab-panels" data-role="tabs-content"></div>
+        </section>
+
+        <section class="panel tab-wrapper" data-role="tabs-wrapper-secondary">
+          <div class="panel-head">
+            <h3 data-role="tabs-heading-secondary">Details</h3>
+          </div>
+          <div class="tab-nav" data-role="tabs-nav-secondary"></div>
+          <div class="tab-panels" data-role="tabs-content-secondary"></div>
         </section>
 
         <section class="panel" data-role="flughafen-panel" hidden>
@@ -797,16 +817,21 @@
         freizeitMarkdown: document.querySelector('[data-role="freizeit-markdown"]'),
         freizeitPdfs: document.querySelector('[data-role="freizeit-pdfs"]'),
         tabsWrapper: document.querySelector('[data-role="tabs-wrapper"]'),
-      tabsNav: document.querySelector('[data-role="tabs-nav"]'),
-      tabsSelect: null,
-      tabsContent: document.querySelector('[data-role="tabs-content"]'),
-      tabsHeading: document.querySelector('[data-role="tabs-heading"]'),
-      sectionSelect: null,
-      toc: null,
-      imageModal: document.querySelector('[data-role="image-modal"]'),
-      imageModalImg: document.querySelector('[data-role="image-modal-img"]'),
-      imageModalClose: document.querySelector('[data-role="image-modal-close"]')
-    };
+        tabsWrapperSecondary: document.querySelector('[data-role="tabs-wrapper-secondary"]'),
+        tabsNav: document.querySelector('[data-role="tabs-nav"]'),
+        tabsNavSecondary: document.querySelector('[data-role="tabs-nav-secondary"]'),
+        tabsSelect: null,
+        tabsSelectSecondary: null,
+        tabsContent: document.querySelector('[data-role="tabs-content"]'),
+        tabsContentSecondary: document.querySelector('[data-role="tabs-content-secondary"]'),
+        tabsHeading: document.querySelector('[data-role="tabs-heading"]'),
+        tabsHeadingSecondary: document.querySelector('[data-role="tabs-heading-secondary"]'),
+        sectionSelect: null,
+        toc: null,
+        imageModal: document.querySelector('[data-role="image-modal"]'),
+        imageModalImg: document.querySelector('[data-role="image-modal-img"]'),
+        imageModalClose: document.querySelector('[data-role="image-modal-close"]')
+      };
 
       init();
       window.addEventListener('hashchange', handleHashChange);
@@ -1088,7 +1113,13 @@
           existingTitle.remove();
         }
 
-        if(state.activeId === 'schluesselergebnisse'){
+        if(state.activeId === 'intro'){
+          const reportTitle = document.createElement('h1');
+          reportTitle.className = 'report-title';
+          reportTitle.dataset.ignoreToc = 'true';
+          reportTitle.textContent = 'Umsteigeprioritäten am Bahnhof Thun';
+          markdownRoot.insertAdjacentElement('beforebegin', reportTitle);
+        }else if(state.activeId === 'schluesselergebnisse'){
           const reportTitle = document.createElement('h1');
           reportTitle.className = 'report-title';
           reportTitle.dataset.ignoreToc = 'true';
@@ -1157,7 +1188,9 @@
           const raw = md.render(text);
           ui.markdown.innerHTML = DOMPurify.sanitize(raw, {USE_PROFILES: {html: true}});
           wrapTables(ui.markdown);
-          if(section.id === 'schluesselergebnisse'){
+          if(section.id === 'intro'){
+            renderToc(ui.markdown);
+          }else if(section.id === 'schluesselergebnisse'){
             renderToc(ui.markdown);
           }else if(ui.toc){
             ui.toc.remove();
@@ -1181,6 +1214,10 @@
 
       function renderDownloads(section){
         ui.downloads.innerHTML = '';
+        if(section.id === 'weitere-links'){
+          ui.downloadsPanel.hidden = true;
+          return;
+        }
         const downloads = section.downloads || [];
         if(!downloads.length){
           ui.downloadsPanel.hidden = true;
@@ -1367,12 +1404,16 @@
           renderVerkehrsknotenSections(assets);
           return;
         }
-        ui.assets.classList.remove('single-column');
+        const singleColumn = section.id === 'balkendiagramm-treemap' || section.id === 'weitere-links';
+        ui.assets.classList.toggle('single-column', singleColumn);
         ui.assetsFilter.hidden = true;
         clearKnotenPanels();
         assets.forEach(asset => {
           const card = buildAssetCard({ ...asset, autoload: true });
           if(section.id === 'ist-analysis' && ((asset.title || '').includes('Modal Split') || asset.fullWidth)){
+            card.classList.add('full-width');
+          }
+          if(singleColumn){
             card.classList.add('full-width');
           }
           ui.assets.appendChild(card);
@@ -1510,6 +1551,29 @@
         return {overview, groups: sorted, labels: sortedLabels};
       }
 
+      function buildOpenDownloadActions(src){
+        if(!src){ return null; }
+        const actions = document.createElement('div');
+        actions.className = 'asset-actions';
+
+        const open = document.createElement('a');
+        open.className = 'btn secondary';
+        open.href = resolve(src);
+        open.target = '_blank';
+        open.rel = 'noopener noreferrer';
+        open.textContent = 'Im neuen Tab öffnen';
+        actions.appendChild(open);
+
+        const download = document.createElement('a');
+        download.className = 'btn secondary';
+        download.href = resolve(src);
+        download.download = '';
+        download.textContent = 'Download';
+        actions.appendChild(download);
+
+        return actions;
+      }
+
       function buildAssetCard(asset, options = {}){
         const card = document.createElement('article');
         card.className = 'asset-card';
@@ -1534,36 +1598,22 @@
         placeholder.textContent = 'Noch nicht geladen';
         card.appendChild(placeholder);
 
-        const actions = document.createElement('div');
-        actions.className = 'asset-actions';
-
         if(asset.src){
-          const open = document.createElement('a');
-          open.className = 'btn secondary';
-          open.href = resolve(asset.src);
-          open.target = '_blank';
-          open.rel = 'noopener noreferrer';
-          open.textContent = 'Im neuen Tab öffnen';
-          actions.appendChild(open);
-
-          const download = document.createElement('a');
-          download.className = 'btn secondary';
-          download.href = resolve(asset.src);
-          download.download = '';
-          download.textContent = 'Download';
-          actions.appendChild(download);
+          const actions = buildOpenDownloadActions(asset.src);
+          if(actions){ card.appendChild(actions); }
 
           if(asset.autoload || options.autoload){
             setTimeout(() => loadFrame(card, placeholder, null, asset), 50);
           }
         }else{
+          const actions = document.createElement('div');
+          actions.className = 'asset-actions';
           const note = document.createElement('span');
           note.className = 'muted';
           note.textContent = 'Kein src angegeben.';
           actions.appendChild(note);
+          card.appendChild(actions);
         }
-
-        card.appendChild(actions);
         return card;
       }
 
@@ -1603,77 +1653,98 @@
       }
 
       async function renderTabs(section){
-        const wrapper = ui.tabsWrapper;
-        ui.tabsSelect = null;
-        if(!section.tabs){
+        await renderTabsInto(
+          section.tabs,
+          ui.tabsWrapper,
+          ui.tabsNav,
+          ui.tabsContent,
+          ui.tabsHeading,
+          'primary'
+        );
+        await renderTabsInto(
+          section.tabsSecondary,
+          ui.tabsWrapperSecondary,
+          ui.tabsNavSecondary,
+          ui.tabsContentSecondary,
+          ui.tabsHeadingSecondary,
+          'secondary'
+        );
+      }
+
+      async function renderTabsInto(tabsConfig, wrapper, nav, content, heading, slot){
+        if(!wrapper || !nav || !content || !heading){ return; }
+        setTabsSelect(slot, null);
+        if(!tabsConfig){
           wrapper.style.display = 'none';
-          ui.tabsNav.innerHTML = '';
-          ui.tabsContent.innerHTML = '';
+          nav.innerHTML = '';
+          content.innerHTML = '';
           return;
         }
         wrapper.style.display = 'block';
-        ui.tabsNav.innerHTML = '';
-        ui.tabsContent.innerHTML = '';
+        nav.innerHTML = '';
+        content.innerHTML = '';
 
-        const tabsData = await loadTabsData(section.tabs);
+        const tabsData = await loadTabsData(tabsConfig);
         const grouped = tabsData && Array.isArray(tabsData.groups) ? tabsData.groups : null;
-        const heading = section.tabs.title || tabsData?.title || 'Tabs';
-        ui.tabsHeading.textContent = heading;
+        const headingText = tabsConfig.title || tabsData?.title || 'Tabs';
+        heading.textContent = headingText;
 
         if(Array.isArray(tabsData) && tabsData.length){
-          renderFlatTabs(tabsData, section.tabs.height);
+          renderFlatTabs(tabsData, tabsConfig.height, nav, content, slot);
           return;
         }
         if(grouped && grouped.length){
-          renderGroupedTabs(grouped, section.tabs.height);
+          renderGroupedTabs(grouped, tabsConfig.height, nav, content, slot);
           return;
         }
 
-        ui.tabsContent.innerHTML = '<p class="muted">Keine Tabs hinterlegt.</p>';
+        content.innerHTML = '<p class="muted">Keine Tabs hinterlegt.</p>';
       }
 
-      function renderFlatTabs(tabsData, defaultHeight){
-        const label = document.createElement('label');
-        label.className = 'tab-select';
-        const labelText = document.createElement('span');
-        labelText.textContent = 'Ansicht auswählen';
-        const select = document.createElement('select');
-        select.setAttribute('aria-label', 'Ansicht auswählen');
-        select.id = 'tab-select';
-        select.name = 'tab-select';
-        select.addEventListener('change', (event) => {
-          activateTab(Number(event.target.value), tabsData, defaultHeight);
-        });
-        label.appendChild(labelText);
-        label.appendChild(select);
-        ui.tabsNav.appendChild(label);
-        ui.tabsSelect = select;
+      function setTabsSelect(slot, value){
+        if(slot === 'secondary'){
+          ui.tabsSelectSecondary = value;
+          return;
+        }
+        ui.tabsSelect = value;
+      }
+
+      function renderFlatTabs(tabsData, defaultHeight, nav, content, slot){
+        const pills = document.createElement('div');
+        pills.className = 'tab-pills';
+        nav.appendChild(pills);
+        setTabsSelect(slot, null);
 
         tabsData.forEach((tab, idx) => {
-          const option = document.createElement('option');
-          option.value = String(idx);
-          option.textContent = tab.title || 'Tab ' + (idx + 1);
-          select.appendChild(option);
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'tab-pill';
+          pill.dataset.index = String(idx);
+          pill.textContent = tab.title || 'Tab ' + (idx + 1);
+          pill.addEventListener('click', () => {
+            activateTab(idx, tabsData, defaultHeight, content);
+          });
+          pills.appendChild(pill);
 
           const panel = document.createElement('div');
           panel.className = 'tab-panel';
           panel.dataset.index = idx;
           panel.innerHTML = '<p class="muted">Noch nicht geladen.</p>';
-          ui.tabsContent.appendChild(panel);
+          content.appendChild(panel);
         });
 
-        activateTab(0, tabsData, defaultHeight);
+        activateTab(0, tabsData, defaultHeight, content);
       }
 
-      function renderGroupedTabs(groups, defaultHeight){
+      function renderGroupedTabs(groups, defaultHeight, nav, content, slot){
         const groupLabel = document.createElement('label');
         groupLabel.className = 'tab-select';
         const groupText = document.createElement('span');
         groupText.textContent = 'Ansicht';
         const groupSelect = document.createElement('select');
         groupSelect.setAttribute('aria-label', 'Ansicht');
-        groupSelect.id = 'tab-group-select';
-        groupSelect.name = 'tab-group-select';
+        groupSelect.id = slot === 'secondary' ? 'tab-group-select-secondary' : 'tab-group-select';
+        groupSelect.name = groupSelect.id;
         groupLabel.appendChild(groupText);
         groupLabel.appendChild(groupSelect);
 
@@ -1683,20 +1754,20 @@
         itemText.textContent = 'Auswählen';
         const itemSelect = document.createElement('select');
         itemSelect.setAttribute('aria-label', 'Auswählen');
-        itemSelect.id = 'tab-item-select';
-        itemSelect.name = 'tab-item-select';
+        itemSelect.id = slot === 'secondary' ? 'tab-item-select-secondary' : 'tab-item-select';
+        itemSelect.name = itemSelect.id;
         itemLabel.appendChild(itemText);
         itemLabel.appendChild(itemSelect);
 
-        ui.tabsNav.appendChild(itemLabel);
-        ui.tabsNav.appendChild(groupLabel);
-        ui.tabsSelect = itemSelect;
+        nav.appendChild(itemLabel);
+        nav.appendChild(groupLabel);
+        setTabsSelect(slot, itemSelect);
 
         const panel = document.createElement('div');
         panel.className = 'tab-panel';
         panel.dataset.index = 'grouped';
         panel.dataset.active = 'true';
-        ui.tabsContent.appendChild(panel);
+        content.appendChild(panel);
 
         groups.forEach((group, idx) => {
           const opt = document.createElement('option');
@@ -1740,6 +1811,8 @@
           iframe.title = item.title || 'Tab';
           iframe.height = (item.height || group?.height || defaultHeight || 640) + 'px';
           panel.appendChild(iframe);
+          const actions = buildOpenDownloadActions(item.src);
+          if(actions){ panel.appendChild(actions); }
         }
 
         groupSelect.addEventListener('change', () => {
@@ -1771,11 +1844,8 @@
         return [];
       }
 
-      function activateTab(idx, tabsData, defaultHeight){
-        if(ui.tabsSelect && Number(ui.tabsSelect.value) !== idx){
-          ui.tabsSelect.value = String(idx);
-        }
-        ui.tabsContent.querySelectorAll('.tab-panel').forEach(panel => {
+      function activateTab(idx, tabsData, defaultHeight, content){
+        content.querySelectorAll('.tab-panel').forEach(panel => {
           const active = Number(panel.dataset.index) === idx;
           panel.dataset.active = active ? 'true' : 'false';
           if(active && panel.dataset.loaded !== 'true'){
@@ -1789,8 +1859,13 @@
             iframe.height = (tab.height || defaultHeight || 640) + 'px';
             panel.innerHTML = '';
             panel.appendChild(iframe);
+            const actions = buildOpenDownloadActions(tab.src);
+            if(actions){ panel.appendChild(actions); }
             panel.dataset.loaded = 'true';
           }
+        });
+        content.parentElement?.querySelectorAll('.tab-pill').forEach(pill => {
+          pill.dataset.active = pill.dataset.index === String(idx) ? 'true' : 'false';
         });
       }
 
